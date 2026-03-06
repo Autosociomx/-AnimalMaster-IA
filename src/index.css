@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-brand-gold: #C5A059;
+  --color-brand-dark: #050505;
+  --color-brand-surface: #0F0F0F;
+  --color-brand-border: rgba(197, 160, 89, 0.15);
+  --color-brand-text: #E5E5E5;
+  --color-brand-muted: #A3A3A3;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-dark text-brand-text font-sans antialiased selection:bg-brand-gold selection:text-brand-dark;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-serif font-light tracking-tight;
+  }
+}
+
+.luxury-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+}
+
+.glass-panel {
+  @apply bg-brand-surface/40 backdrop-blur-xl border border-brand-border shadow-2xl;
+}
+
+.luxury-button {
+  @apply px-10 py-4 bg-brand-gold text-brand-dark rounded-none font-medium uppercase tracking-[0.2em] text-[10px] transition-all hover:bg-white hover:scale-105 active:scale-95;
+}
+
+.outline-button {
+  @apply px-10 py-4 border border-brand-gold/30 text-brand-gold rounded-none font-medium uppercase tracking-[0.2em] text-[10px] transition-all hover:bg-brand-gold hover:text-brand-dark;
+}
+
+.section-label {
+  @apply text-[9px] uppercase tracking-[0.4em] font-semibold text-brand-gold mb-6 block;
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.mask-fade-bottom {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.markdown-body {
+  @apply font-sans font-light text-brand-muted leading-relaxed;
+}
+
+.markdown-body h1 {
+  @apply text-4xl text-brand-gold mb-8 mt-12 font-serif;
+}
+
+.markdown-body h2 {
+  @apply text-3xl text-brand-gold mb-6 mt-10 font-serif;
+}
+
+.markdown-body h3 {
+  @apply text-2xl text-brand-gold mb-4 mt-8 font-serif;
+}
+
+.markdown-body p {
+  @apply mb-6;
+}
+
+.markdown-body ul, .markdown-body ol {
+  @apply mb-6 ml-6 list-disc;
+}
+
+.markdown-body li {
+  @apply mb-2;
+}
+
+.markdown-body blockquote {
+  @apply border-l-2 border-brand-gold pl-6 italic my-8 text-brand-text bg-brand-gold/5 py-4;
+}
+
+.markdown-body table {
+  @apply w-full border-collapse mb-8 text-xs;
+}
+
+.markdown-body th {
+  @apply border-b border-brand-gold/20 p-4 text-left font-bold uppercase tracking-widest text-brand-gold bg-brand-gold/5;
+}
+
+.markdown-body td {
+  @apply border-b border-brand-gold/10 p-4 text-brand-muted;
+}
+
+.markdown-body code {
+  @apply bg-brand-gold/10 text-brand-gold px-2 py-1 rounded font-mono text-xs;
+}
+
+.markdown-body pre {
+  @apply bg-brand-dark/50 p-6 border border-brand-gold/10 overflow-x-auto mb-8 font-mono text-xs text-brand-gold;
+}

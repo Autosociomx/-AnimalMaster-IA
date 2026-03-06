@@ -1,0 +1,7 @@
+{
+  "name": "Animal Master Academy",
+  "description": "A high-ticket academy for animal care, featuring expert mentors, comprehensive guides, and AI-powered one-on-one assistance.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
