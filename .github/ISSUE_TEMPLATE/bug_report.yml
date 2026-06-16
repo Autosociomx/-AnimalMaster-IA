@@ -1,0 +1,56 @@
+name: Reporte de Error
+description: Reporta un error o comportamiento inesperado en Animal Master IA
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por tomarte el tiempo de reportar este error. Por favor completa la siguiente información.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Descripción del Error
+      description: Una descripción clara y concisa de lo que ocurre.
+      placeholder: Cuando hago X, ocurre Y en lugar de Z...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para Reproducir
+      description: Pasos para reproducir el comportamiento.
+      placeholder: |
+        1. Ir a '...'
+        2. Hacer clic en '...'
+        3. Ver error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamiento Esperado
+      description: Describe lo que esperabas que ocurriera.
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Capturas de Pantalla
+      description: Si aplica, agrega capturas de pantalla para ayudar a explicar el problema.
+
+  - type: input
+    id: browser
+    attributes:
+      label: Navegador
+      placeholder: "Ej: Chrome 120, Firefox 121, Safari 17"
+
+  - type: input
+    id: os
+    attributes:
+      label: Sistema Operativo
+      placeholder: "Ej: Windows 11, macOS Sonoma, Ubuntu 22.04"

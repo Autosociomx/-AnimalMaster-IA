@@ -1,0 +1,17 @@
+# CODEOWNERS — Animal Master IA
+# Los propietarios de código listados aquí son requeridos como revisores
+# en cualquier Pull Request que modifique los archivos correspondientes.
+
+# Propietario global del repositorio
+* @autosociomx
+
+# Gobernanza y documentación
+GOVERNANCE.md @autosociomx
+SECURITY.md @autosociomx
+CODE_OF_CONDUCT.md @autosociomx
+
+# Código fuente principal
+/src/ @autosociomx
+
+# Configuración de CI/CD
+/.github/ @autosociomx

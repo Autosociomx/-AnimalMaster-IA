@@ -1,0 +1,43 @@
+name: Solicitud de Funcionalidad
+description: Propón una nueva funcionalidad o mejora para Animal Master IA
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por contribuir con ideas para mejorar Animal Master IA.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema o Necesidad
+      description: ¿Qué problema resuelve esta funcionalidad? ¿Qué necesidad cubre?
+      placeholder: Actualmente no es posible...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solución Propuesta
+      description: Describe la funcionalidad que te gustaría ver implementada.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas Consideradas
+      description: ¿Has considerado otras soluciones o alternativas?
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridad Estimada
+      options:
+        - Alta — bloquea flujos principales
+        - Media — mejora la experiencia
+        - Baja — nice to have
+    validations:
+      required: true

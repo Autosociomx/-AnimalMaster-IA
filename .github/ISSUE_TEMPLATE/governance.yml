@@ -1,0 +1,44 @@
+name: Propuesta de Gobernanza
+description: Propón cambios a las políticas, procesos o estructura de gobernanza del proyecto
+title: "[Governance]: "
+labels: ["governance"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Las propuestas de gobernanza son revisadas por los mantenedores y el propietario del proyecto.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Tipo de Propuesta
+      options:
+        - Cambio en GOVERNANCE.md
+        - Nueva política de seguridad
+        - Modificación de roles
+        - Cambio en proceso de contribución
+        - Otro
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Justificación
+      description: ¿Por qué es necesario este cambio de gobernanza?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta Detallada
+      description: Describe el cambio propuesto con el mayor detalle posible.
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto Esperado
+      description: ¿Cómo afecta este cambio al proyecto y a sus colaboradores?
