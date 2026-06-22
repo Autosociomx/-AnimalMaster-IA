@@ -1,0 +1,104 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents a user in the system",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email", "description": "User email" },
+        "role": { "type": "string", "enum": ["user", "admin"], "description": "User role" },
+        "createdAt": { "type": "string", "format": "date", "description": "Account creation date" }
+      },
+      "required": ["uid", "email", "role", "createdAt"]
+    },
+    "Guide": {
+      "title": "Guide",
+      "description": "Guía de aprendizaje",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string" },
+        "title": { "type": "string" },
+        "pages": { "type": "number" },
+        "level": { "type": "string" },
+        "content": { "type": "string" },
+        "pdfUrl": { "type": "string" }
+      },
+      "required": ["id", "category", "title", "pages", "level", "content", "pdfUrl"]
+    },
+    "Mentor": {
+      "title": "Mentor",
+      "description": "Mentor del sistema",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nombre": { "type": "string" },
+        "titulo_visible": { "type": "string" },
+        "especialidad_neuro": { "type": "string" },
+        "biografia_pnl": { "type": "string" },
+        "anclaje_credibilidad": { "type": "string" },
+        "promesa_resultado": { "type": "string" },
+        "foto_url": { "type": "string" },
+        "tags": { "type": "array" },
+        "metrics": { "type": "object" }
+      },
+      "required": ["id", "nombre", "titulo_visible"]
+    },
+    "ChatSession": {
+      "title": "ChatSession",
+      "description": "Represents a chat session for a user",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID of the owner" },
+        "mentorId": { "type": "string", "description": "ID of the mentor (or 'general')" },
+        "messages": { 
+          "type": "array", 
+          "items": { 
+            "type": "object",
+            "properties": {
+              "role": { "type": "string", "enum": ["user", "model"] },
+              "text": { "type": "string" },
+              "timestamp": { "type": "number" }
+            }
+          } 
+        },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["userId", "mentorId", "messages", "updatedAt"]
+    },
+    "AnalyticsData": {
+      "title": "AnalyticsData",
+      "description": "User specific analytics data",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "animalProgress": { "type": "array" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["userId", "animalProgress", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "User" },
+      "description": "User profiles"
+    },
+    "/chats/{chatId}": {
+      "schema": { "$ref": "ChatSession" },
+      "description": "User chat sessions"
+    },
+    "/analytics/{analyticsId}": {
+      "schema": { "$ref": "AnalyticsData" },
+      "description": "User analytics data"
+    },
+    "/guides/{guideId}": {
+      "schema": { "$ref": "Guide" },
+      "description": "Colección de guías"
+    },
+    "/mentors/{mentorId}": {
+      "schema": { "$ref": "Mentor" },
+      "description": "Colección de mentores"
+    }
+  }
+}

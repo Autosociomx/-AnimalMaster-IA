@@ -1,0 +1,139 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: users
+    // Document ID: userId (Firebase Auth UID)
+    // Fields:
+    //   - uid: string (required, immutable) - Firebase Auth UID
+    //   - email: string (required, immutable) - User email
+    //   - role: string (required, enum: ['user', 'admin']) - User role
+    //   - createdAt: string (required, immutable) - Account creation date
+    //
+    // Collection: guides
+    // Document ID: guideId
+    // Fields:
+    //   - id: string (required)
+    //   - category: string (required)
+    //   - title: string (required, max 100)
+    //   - pages: number (required, positive)
+    //   - level: string (required)
+    //   - content: string (required, max 2000)
+    //   - pdfUrl: string (required, valid URL)
+    //
+    // Collection: mentors
+    // Document ID: mentorId
+    // Fields:
+    //   - id: string (required)
+    //   - nombre: string (required, max 100)
+    //   - titulo_visible: string (required, max 100)
+    //   - especialidad_neuro: string (optional, max 200)
+    //   - biografia_pnl: string (optional, max 2000)
+    //   - anclaje_credibilidad: string (optional, max 500)
+    //   - promesa_resultado: string (optional, max 500)
+    //   - foto_url: string (optional, valid URL)
+    //   - tags: list (optional, max 10)
+    //   - metrics: map (optional)
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "autosociomx@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['uid', 'email', 'role', 'createdAt', 'plan']) &&
+             data.keys().hasOnly(['uid', 'email', 'role', 'createdAt', 'plan']) &&
+             data.uid is string && data.uid.size() > 0 &&
+             data.email is string && data.email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") &&
+             data.role in ['user', 'admin'] &&
+             data.plan in ['none', 'Personal Guide', 'Clinical Professional', 'Elite Executive'] &&
+             data.createdAt is string && data.createdAt.matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}.*Z?$");
+    }
+
+    function isValidGuide(data) {
+      return data.keys().hasAll(['id', 'category', 'title', 'pages', 'level', 'content', 'pdfUrl']) &&
+             data.title is string && data.title.size() <= 100 &&
+             data.pages is number && data.pages > 0 &&
+             data.content is string && data.content.size() <= 2000 &&
+             data.pdfUrl is string && (data.pdfUrl.matches("^https://.*") || data.pdfUrl.matches("^http://.*"));
+    }
+
+    function isValidMentor(data) {
+      return data.keys().hasAll(['id', 'nombre', 'titulo_visible']) &&
+             data.nombre is string && data.nombre.size() <= 100 &&
+             data.titulo_visible is string && data.titulo_visible.size() <= 100;
+    }
+
+    function isValidChatSession(data) {
+      return data.keys().hasAll(['userId', 'mentorId', 'messages', 'lastUpdated']) &&
+             data.userId is string && data.userId == request.auth.uid &&
+             data.mentorId is string &&
+             data.messages is list &&
+             data.lastUpdated is timestamp;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isAuthenticated() && isValidUser(request.resource.data) && (isOwner(userId) || isAdmin());
+      allow update: if isAuthenticated() && isValidUser(request.resource.data) && (isOwner(userId) || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    match /guides/{guideId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /mentors/{mentorId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /chat_sessions/{sessionId} {
+      allow read: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+      allow create, update: if isAuthenticated() && request.resource.data.userId == request.auth.uid && isValidChatSession(request.resource.data);
+      allow delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    match /chats/{chatId} {
+      allow read: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid);
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuthenticated() && (resource == null || resource.data.userId == request.auth.uid) && request.resource.data.userId == request.auth.uid;
+      allow delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    match /analytics/{analyticsId} {
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAuthenticated() && resource.data.userId == request.auth.uid && request.resource.data.userId == request.auth.uid;
+      allow delete: if isAuthenticated() && resource.data.userId == request.auth.uid;
+    }
+
+    match /engine_results/{resultId} {
+      allow read: if true;
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if isAdmin();
+    }
+  }
+}

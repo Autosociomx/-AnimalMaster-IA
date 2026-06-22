@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono&display=swap');
 
 @theme {
@@ -6,15 +7,38 @@
   --font-serif: "Cormorant Garamond", serif;
   --font-mono: "JetBrains Mono", monospace;
   
-  --color-brand-gold: #C5A059;
-  --color-brand-dark: #050505;
-  --color-brand-surface: #0F0F0F;
-  --color-brand-border: rgba(197, 160, 89, 0.15);
-  --color-brand-text: #E5E5E5;
-  --color-brand-muted: #A3A3A3;
+  --color-brand-gold: #E53E3E; /* Bright Clinical Crimson / Red Alert for Triage */
+  --color-brand-dark: #0A0D14; /* Deep Medical Slate */
+  --color-brand-surface: #121824; /* Elevated Slate Cards */
+  --color-brand-border: rgba(229, 62, 62, 0.2); 
+  --color-brand-text: #F8FAFC;
+  --color-brand-muted: #94A3B8;
+  --color-brand-accent: #991B1B; /* Dark Harvard Crimson */
+  
+  --shadow-luxury: 0 20px 50px rgba(0, 0, 0, 0.4);
+  --shadow-gold: 0 0 30px rgba(229, 62, 62, 0.15);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-brand-dark text-brand-text font-sans antialiased selection:bg-brand-gold selection:text-brand-dark;
   }
@@ -22,22 +46,65 @@
   h1, h2, h3, h4 {
     @apply font-serif font-light tracking-tight;
   }
+
+  /* Custom Scrollbar for Premium Feel */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(229, 62, 62, 0.4);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(229, 62, 62, 0.7);
+  }
 }
 
 .luxury-gradient {
-  background: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(229, 62, 62, 0.12) 0%, transparent 70%);
+}
+
+.grid-bg {
+  background-image: linear-gradient(rgba(229, 62, 62, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(229, 62, 62, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 .glass-panel {
-  @apply bg-brand-surface/40 backdrop-blur-xl border border-brand-border shadow-2xl;
+  @apply bg-brand-surface/60 backdrop-blur-2xl border border-brand-border shadow-luxury;
+}
+
+.glass-card {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 hover:border-brand-gold/30 transition-all duration-500;
 }
 
 .luxury-button {
-  @apply px-10 py-4 bg-brand-gold text-brand-dark rounded-none font-medium uppercase tracking-[0.2em] text-[10px] transition-all hover:bg-white hover:scale-105 active:scale-95;
+  @apply px-10 py-4 bg-brand-gold text-brand-dark rounded-none font-medium uppercase tracking-[0.2em] text-[10px] transition-all hover:bg-white hover:shadow-gold active:scale-95;
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 3s infinite;
 }
 
 .outline-button {
-  @apply px-10 py-4 border border-brand-gold/30 text-brand-gold rounded-none font-medium uppercase tracking-[0.2em] text-[10px] transition-all hover:bg-brand-gold hover:text-brand-dark;
+  @apply px-10 py-4 border border-brand-gold/30 text-brand-gold rounded-none font-medium uppercase tracking-[0.2em] text-[10px] transition-all hover:bg-brand-gold hover:text-brand-dark hover:shadow-gold;
 }
 
 .section-label {
