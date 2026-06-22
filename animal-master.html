@@ -338,6 +338,44 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
 /* Species quick-select buttons */
 .species-btn{padding:6px 14px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.15em;border:1px solid rgba(197,160,89,.2);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s}
 .species-btn:hover,.species-btn.active{background:rgba(197,160,89,.1);border-color:var(--gold);color:var(--gold)}
+
+/* =================== NUTRICIÓN =================== */
+.nutri-tab{padding:16px 28px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:rgba(163,163,163,.4);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s}
+.nutri-tab.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(197,160,89,.04)}
+.nutri-tab:hover:not(.active){color:var(--muted)}
+.nutri-panel{display:none}
+.nutri-panel.active{display:block}
+.nutri-table{width:100%;border-collapse:collapse;font-size:12px}
+.nutri-table th{border-bottom:1px solid rgba(197,160,89,.2);padding:12px 16px;text-align:left;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:var(--gold);white-space:nowrap;background:rgba(197,160,89,.04)}
+.nutri-table td{border-bottom:1px solid rgba(197,160,89,.06);padding:12px 16px;color:var(--muted);white-space:nowrap}
+.nutri-table tr:hover td{background:rgba(197,160,89,.03);color:var(--text)}
+.nutri-table-sm{width:100%;border-collapse:collapse;font-size:11px}
+.nutri-table-sm th{border-bottom:1px solid rgba(197,160,89,.15);padding:8px 12px;text-align:left;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.6)}
+.nutri-table-sm td{border-bottom:1px solid rgba(197,160,89,.05);padding:8px 12px;color:var(--muted);font-size:11px}
+.fca-val{color:var(--gold);font-weight:600}
+.rac-card{background:rgba(15,15,15,.4);border:1px solid var(--border);padding:32px;position:relative;overflow:hidden}
+.rac-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:0;background:var(--gold);transition:height .4s}
+.rac-card:hover::before{height:100%}
+.rac-tag{display:inline-block;padding:3px 10px;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;border:1px solid rgba(197,160,89,.2);color:var(--gold);margin-bottom:16px}
+.rac-ing-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(197,160,89,.05)}
+.rac-ing-row:last-child{border:none}
+.rac-ing-name{font-size:12px;color:var(--muted)}
+.rac-ing-pct{font-size:12px;font-weight:600;color:var(--text)}
+.rac-ing-bar{height:3px;background:rgba(197,160,89,.1);margin-top:4px;overflow:hidden}
+.rac-ing-fill{height:100%;background:var(--gold)}
+.rac-stat{text-align:center;padding:16px 0;border-top:1px solid rgba(197,160,89,.1);margin-top:16px}
+.rac-stat-val{font-size:20px;font-weight:300;color:var(--gold)}
+.rac-stat-label{font-size:8px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted);margin-top:4px}
+.calc-label{display:block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:rgba(197,160,89,.6);margin-bottom:10px}
+.calc-input{width:100%;padding:12px 16px;background:rgba(5,5,5,.5);border:1px solid rgba(197,160,89,.15);font-size:13px;color:var(--text);outline:none;transition:border .2s;font-family:'Inter',sans-serif}
+.calc-input:focus{border-color:rgba(197,160,89,.4)}
+.calc-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.calc-result-box{padding:20px;background:rgba(5,5,5,.4);border:1px solid rgba(197,160,89,.1);text-align:center}
+.calc-result-val{font-size:24px;font-weight:300;color:var(--gold);font-family:'Cormorant Garamond',serif;margin-bottom:4px}
+.calc-result-label{font-size:8px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)}
+.ing-level-low{color:#22c55e}
+.ing-level-med{color:var(--gold)}
+.ing-level-high{color:#ef4444}
 </style>
 </head>
 <body>
@@ -351,9 +389,9 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
   <div class="nav-links">
     <a href="#academy">Academia</a>
     <a href="#mentors">Mentores</a>
-    <a href="#ai-assistance">Consultoría IA</a>
+    <a href="#nutricion">Nutrición</a>
+    <a href="#ai-assistance">VetMaster IA</a>
     <a href="#quizzes">Certificaciones</a>
-    <a href="#community">Comunidad</a>
     <button class="btn-luxury" style="padding:10px 24px" onclick="alert('Registro gratuito próximamente. ¡Únete a la lista de espera!')">Unirse Gratis</button>
   </div>
 </nav>
@@ -499,6 +537,185 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
         <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.2em;margin-bottom:12px">Índice de Impacto</div>
         <div style="height:4px;background:rgba(197,160,89,.1);overflow:hidden"><div class="eco-bar-fill" id="eco-bar" style="width:0"></div></div>
         <div style="font-size:10px;color:var(--muted);margin-top:8px">9.8 / 10</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== NUTRICIÓN Y RACIONES =================== -->
+<section id="nutricion" style="padding:128px 0;border-top:1px solid rgba(197,160,89,.05)">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:72px">
+      <span class="sec-label" style="display:block;text-align:center">Ciencia Aplicada · Datos Reales de Campo</span>
+      <h2 style="font-size:clamp(36px,4vw,60px);margin-bottom:20px">Nutrición &amp; <em style="color:var(--gold)">Conversión de Alimentos</em></h2>
+      <p class="muted" style="font-size:15px;max-width:640px;margin:0 auto;line-height:1.8">Tablas técnicas de ingredientes, índices de conversión alimenticia (FCA) por especie y etapa, raciones modelo para engorda, y calculadora de ración diaria. Todo en una sola herramienta.</p>
+    </div>
+
+    <!-- Tabs de navegación -->
+    <div style="display:flex;flex-wrap:wrap;gap:0;margin-bottom:48px;border-bottom:1px solid rgba(197,160,89,.1)" id="nutri-tabs">
+      <button class="nutri-tab active" onclick="setNutriTab('ingredientes',this)">🌾 Ingredientes</button>
+      <button class="nutri-tab" onclick="setNutriTab('conversion',this)">📊 Conversión FCA</button>
+      <button class="nutri-tab" onclick="setNutriTab('raciones',this)">🥣 Raciones Modelo</button>
+      <button class="nutri-tab" onclick="setNutriTab('calculadora',this)">🧮 Calculadora</button>
+    </div>
+
+    <!-- ===== PANEL: INGREDIENTES ===== -->
+    <div class="nutri-panel active" id="np-ingredientes">
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:32px">
+        <input id="ing-search" type="text" placeholder="Buscar ingrediente..." oninput="filterIngredientes()" style="padding:12px 20px;background:rgba(15,15,15,.5);border:1px solid rgba(197,160,89,.15);font-size:13px;color:var(--text);outline:none;flex:1;min-width:240px" />
+        <div style="display:flex;gap:8px;flex-wrap:wrap" id="ing-species-filter">
+          <button class="filter-btn active" onclick="filterIngBySpecies(null,this)">Todos</button>
+          <button class="filter-btn" onclick="filterIngBySpecies('Bovinos',this)">🐄 Bovinos</button>
+          <button class="filter-btn" onclick="filterIngBySpecies('Porcinos',this)">🐷 Porcinos</button>
+          <button class="filter-btn" onclick="filterIngBySpecies('Équidos',this)">🐴 Équidos</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="nutri-table" id="ing-table">
+          <thead>
+            <tr>
+              <th>Ingrediente</th>
+              <th>MS %</th>
+              <th>PC %</th>
+              <th>EM Mcal/kg</th>
+              <th>FDN %</th>
+              <th>Ca %</th>
+              <th>P %</th>
+              <th>Uso principal</th>
+            </tr>
+          </thead>
+          <tbody id="ing-tbody"></tbody>
+        </table>
+      </div>
+      <div style="margin-top:20px;padding:16px 20px;background:rgba(197,160,89,.04);border-left:2px solid rgba(197,160,89,.3)">
+        <p style="font-size:11px;color:var(--muted);line-height:1.7"><strong style="color:var(--gold)">MS</strong> = Materia Seca &nbsp;|&nbsp; <strong style="color:var(--gold)">PC</strong> = Proteína Cruda &nbsp;|&nbsp; <strong style="color:var(--gold)">EM</strong> = Energía Metabolizable &nbsp;|&nbsp; <strong style="color:var(--gold)">FDN</strong> = Fibra Detergente Neutro (llenado del rumen). Valores promedio basados en tablas NRC / INIFAP.</p>
+      </div>
+    </div>
+
+    <!-- ===== PANEL: CONVERSIÓN FCA ===== -->
+    <div class="nutri-panel" id="np-conversion">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:32px">
+
+        <!-- Bovinos -->
+        <div class="eco-card" style="padding:32px">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+            <span style="font-size:32px">🐄</span>
+            <div><h4 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);font-family:'Inter',sans-serif">Bovinos Engorda</h4><p style="font-size:11px;color:var(--muted)">Base: novillos Cebú / cruzado, corral cerrado</p></div>
+          </div>
+          <table class="nutri-table-sm">
+            <thead><tr><th>Etapa</th><th>Días</th><th>Consumo %PV</th><th>GDP kg/día</th><th>FCA</th></tr></thead>
+            <tbody>
+              <tr><td>Arrancador</td><td>0 – 90</td><td>2.5%</td><td>0.9 – 1.1</td><td class="fca-val">5.0 – 6.5</td></tr>
+              <tr><td>Desarrollo</td><td>90 – 180</td><td>2.3%</td><td>0.8 – 1.0</td><td class="fca-val">6.0 – 7.5</td></tr>
+              <tr><td>Finalización</td><td>180 – 240</td><td>2.0%</td><td>0.7 – 0.9</td><td class="fca-val">7.5 – 9.5</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:10px;color:rgba(197,160,89,.4);margin-top:16px;font-style:italic">GDP = Ganancia Diaria de Peso &nbsp;|&nbsp; FCA = kg alimento / kg ganancia</p>
+        </div>
+
+        <!-- Porcinos -->
+        <div class="eco-card" style="padding:32px">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+            <span style="font-size:32px">🐷</span>
+            <div><h4 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);font-family:'Inter',sans-serif">Porcinos Engorda</h4><p style="font-size:11px;color:var(--muted)">Base: cruce comercial Landrace × Duroc</p></div>
+          </div>
+          <table class="nutri-table-sm">
+            <thead><tr><th>Etapa</th><th>Peso (kg)</th><th>Consumo kg/día</th><th>GDP kg/día</th><th>FCA</th></tr></thead>
+            <tbody>
+              <tr><td>Pre-inicio</td><td>7 – 12</td><td>0.4 – 0.6</td><td>0.30 – 0.40</td><td class="fca-val">1.2 – 1.5</td></tr>
+              <tr><td>Inicio</td><td>12 – 30</td><td>0.7 – 1.2</td><td>0.45 – 0.60</td><td class="fca-val">1.5 – 2.0</td></tr>
+              <tr><td>Crecimiento</td><td>30 – 60</td><td>1.5 – 2.2</td><td>0.70 – 0.85</td><td class="fca-val">2.0 – 2.5</td></tr>
+              <tr><td>Finalización</td><td>60 – 110</td><td>2.2 – 3.0</td><td>0.80 – 0.95</td><td class="fca-val">2.5 – 3.2</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Équidos -->
+        <div class="eco-card" style="padding:32px">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+            <span style="font-size:32px">🐴</span>
+            <div><h4 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);font-family:'Inter',sans-serif">Équidos — Requerimientos</h4><p style="font-size:11px;color:var(--muted)">Consumo base en materia seca (% peso vivo)</p></div>
+          </div>
+          <table class="nutri-table-sm">
+            <thead><tr><th>Categoría</th><th>MS %PV</th><th>PC g/día</th><th>EM Mcal/día</th></tr></thead>
+            <tbody>
+              <tr><td>Mantenimiento (500 kg)</td><td>1.5 – 2.0%</td><td>656 g</td><td>16.4</td></tr>
+              <tr><td>Trabajo leve</td><td>2.0 – 2.5%</td><td>699 g</td><td>20.5</td></tr>
+              <tr><td>Trabajo moderado</td><td>2.3 – 2.8%</td><td>820 g</td><td>25.1</td></tr>
+              <tr><td>Trabajo intenso</td><td>2.5 – 3.0%</td><td>1,050 g</td><td>33.9</td></tr>
+              <tr><td>Yegua gestante (último trimestre)</td><td>2.0 – 2.5%</td><td>910 g</td><td>20.9</td></tr>
+              <tr><td>Yegua lactante</td><td>2.5 – 3.0%</td><td>1,435 g</td><td>28.3</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Rastrojo + Melaza -->
+        <div class="eco-card" style="padding:32px;border-color:rgba(197,160,89,.25)">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
+            <span style="font-size:32px">🌽</span>
+            <div><h4 style="font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--gold);font-family:'Inter',sans-serif">Rastrojo de Maíz + Melaza</h4><p style="font-size:11px;color:var(--muted)">Combinación económica más usada en México</p></div>
+          </div>
+          <table class="nutri-table-sm">
+            <thead><tr><th>Proporción</th><th>PC %</th><th>EM Mcal/kg</th><th>Digestib. %</th></tr></thead>
+            <tbody>
+              <tr><td>90% rastrojo + 10% melaza</td><td>5.5</td><td>1.70</td><td>48%</td></tr>
+              <tr><td>80% rastrojo + 20% melaza</td><td>5.6</td><td>1.85</td><td>54%</td></tr>
+              <tr><td>70% rastrojo + 20% melaza + 10% urea*</td><td>9.8</td><td>1.83</td><td>56%</td></tr>
+              <tr><td>60% rastrojo + 20% melaza + 20% sorgo</td><td>6.8</td><td>2.10</td><td>60%</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:16px;padding:12px 16px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15)">
+            <p style="font-size:11px;color:rgba(239,68,68,.7);line-height:1.6">⚠️ <strong>Límite de urea:</strong> máx. 1% del total de la ración (28 g/kg MS). Exceder causa intoxicación. Siempre mezclar bien con melaza antes de agregar al rastrojo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PANEL: RACIONES MODELO ===== -->
+    <div class="nutri-panel" id="np-raciones">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px" id="raciones-grid"></div>
+    </div>
+
+    <!-- ===== PANEL: CALCULADORA ===== -->
+    <div class="nutri-panel" id="np-calculadora">
+      <div style="max-width:720px;margin:0 auto">
+        <div style="background:rgba(15,15,15,.4);border:1px solid var(--border);padding:48px">
+          <h3 style="font-size:26px;margin-bottom:8px">Calculadora de Ración Diaria</h3>
+          <p class="muted" style="font-size:13px;margin-bottom:40px">Calcula los requerimientos diarios de alimento, proteína y energía para tu animal.</p>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px">
+            <div>
+              <label class="calc-label">Especie</label>
+              <select id="calc-species" onchange="calcularRacion()" class="calc-input">
+                <option value="bovino">🐄 Bovino (engorda)</option>
+                <option value="porcino">🐷 Porcino (engorda)</option>
+                <option value="equino">🐴 Équido</option>
+                <option value="bovino-lechero">🥛 Bovino (lechero)</option>
+              </select>
+            </div>
+            <div>
+              <label class="calc-label">Peso Vivo (kg)</label>
+              <input type="number" id="calc-weight" value="250" min="5" max="1000" oninput="calcularRacion()" class="calc-input" />
+            </div>
+            <div>
+              <label class="calc-label">Etapa Productiva</label>
+              <select id="calc-stage" onchange="calcularRacion()" class="calc-input">
+                <option value="arrancador">Arrancador / Pre-inicio</option>
+                <option value="desarrollo">Desarrollo / Crecimiento</option>
+                <option value="finalizacion">Finalización</option>
+              </select>
+            </div>
+            <div>
+              <label class="calc-label">Número de Animales</label>
+              <input type="number" id="calc-count" value="10" min="1" max="10000" oninput="calcularRacion()" class="calc-input" />
+            </div>
+          </div>
+
+          <div id="calc-result" style="border-top:1px solid rgba(197,160,89,.1);padding-top:32px"></div>
+        </div>
+        <div style="margin-top:24px;padding:20px 24px;background:rgba(197,160,89,.04);border:1px solid rgba(197,160,89,.1)">
+          <p style="font-size:11px;color:var(--muted);line-height:1.7">📚 Bases técnicas: NRC 2000 (Beef Cattle), NRC 2012 (Pork), NRC 2007 (Horses), INIFAP — Tablas de Valor Nutritivo de Alimentos para Bovinos del Norte de México. Los valores son estimaciones basadas en condiciones promedio; ajusta según análisis bromatológico de tus ingredientes.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1108,12 +1325,39 @@ Para cada consulta DEBES:
 - En casos URGENTES, prioriza siempre la consulta profesional inmediata
 
 Tu conocimiento cubre:
-- Bovinos: medicina interna, nutrición, reproducción, mastitis, enfermedades metabólicas, cólicos
+
+NUTRICIÓN Y CONVERSIÓN DE ALIMENTOS (área de especialidad profunda):
+- Formulación de raciones balanceadas para bovinos engorda (arrancador, desarrollo, finalización)
+- Dietas para porcinos por etapa (pre-inicio, inicio, crecimiento, finalización)
+- Nutrición equina (mantenimiento, trabajo, gestación, lactación)
+- Tablas de valor nutritivo: MS%, PC%, EM Mcal/kg, FDN%, Ca%, P%
+- Ingredientes comunes: maíz, sorgo, pasta de soya, harinolina, melaza, rastrojo de maíz, alfalfa, salvado de trigo, urea, grasa protegida
+- Índice de Conversión Alimenticia (FCA/FCR):
+  * Bovinos engorda: FCA 5-6 (arrancador), 6-7.5 (desarrollo), 7.5-9.5 (finalización)
+  * Porcinos: FCA 1.2-1.5 (pre-inicio), 1.5-2.0 (inicio), 2.0-2.5 (crecimiento), 2.5-3.2 (finalización)
+  * Équidos: consumo 1.5-3.0% del peso vivo en MS según nivel de trabajo
+- Combinaciones económicas: rastrojo de maíz + melaza de caña (80:20), adición de urea (máx 1% total)
+- Cálculo de ración diaria: % del peso vivo, kg MS/día, kg alimento fresco/día
+- Requerimientos de proteína cruda (PC) y energía metabolizable (EM) por especie y etapa
+- Bases bibliográficas: NRC 2000 (Beef Cattle), NRC 2012 (Pork), NRC 2007 (Horses), INIFAP
+- Formulación de raciones con ingredientes locales/de bajo costo
+- Prevención de acidosis ruminal, meteorismo, intoxicación por urea
+- Sustituciones de ingredientes cuando no están disponibles localmente
+
+MEDICINA VETERINARIA Y TRIAGE:
+- Bovinos: medicina interna, reproducción, mastitis, enfermedades metabólicas, cólicos
 - Porcinos: bioseguridad, cuidados neonatales, enfermedades respiratorias, problemas reproductivos, farrowing
 - Équidos: cólicos, cojeras, heridas, reproducción, laminitis, condiciones metabólicas
 - Caninos: comportamiento, medicina interna, trauma, toxicología, dermatología, urgencias
 - Aves de corral: enfermedades infecciosas, nutrición, bioseguridad, producción, Newcastle, Influenza Aviar
 - Acuicultura: calidad del agua, enfermedades infecciosas, nutrición, parámetros críticos
+
+Cuando te pregunten sobre nutrición, SIEMPRE proporciona:
+1. Requerimiento diario (kg MS y kg tal cual) calculado al % del peso vivo
+2. Porcentaje de PC y EM requeridos para esa etapa
+3. Una ración ejemplo con ingredientes comunes y sus porcentajes
+4. FCA esperada y GDP proyectada
+5. Alertas sobre límites de seguridad (urea, granos finos, etc.)
 
 AVISO LEGAL OBLIGATORIO al inicio de cada respuesta de triage:
 "⚠️ Orientación preliminar de triage. No sustituye el diagnóstico de un médico veterinario certificado. Ante cualquier duda, consulte a su veterinario."
@@ -1225,6 +1469,293 @@ async function sendFloat() {
   }
 }
 
+// =================== NUTRICIÓN ===================
+
+const INGREDIENTES = [
+  // Granos y energéticos
+  {nombre:'Maíz amarillo molido',ms:88,pc:8.5,em:3.35,fdn:11,ca:0.03,p:0.28,uso:'Bovinos · Porcinos · Équidos',species:['Bovinos','Porcinos','Équidos']},
+  {nombre:'Sorgo grano molido',ms:88,pc:8.8,em:3.30,fdn:14,ca:0.04,p:0.32,uso:'Bovinos · Porcinos',species:['Bovinos','Porcinos']},
+  {nombre:'Melaza de caña',ms:75,pc:4.5,em:2.95,fdn:0,ca:0.80,p:0.08,uso:'Bovinos · Équidos (palatabilidad)',species:['Bovinos','Équidos']},
+  {nombre:'Salvado de trigo',ms:88,pc:16.5,em:2.30,fdn:46,ca:0.14,p:1.15,uso:'Équidos · Porcinos',species:['Porcinos','Équidos']},
+  {nombre:'Grasa protegida (bypass)',ms:99,pc:0,em:6.10,fdn:0,ca:9.0,p:0,uso:'Bovinos lecheros / engorda finalización',species:['Bovinos']},
+  // Proteicos
+  {nombre:'Pasta de soya (44% PC)',ms:89,pc:44.0,em:2.80,fdn:12,ca:0.30,p:0.65,uso:'Bovinos · Porcinos · Équidos',species:['Bovinos','Porcinos','Équidos']},
+  {nombre:'Harinolina (pasta de algodón)',ms:90,pc:38.0,em:2.35,fdn:22,ca:0.22,p:1.10,uso:'Bovinos · Porcinos',species:['Bovinos','Porcinos']},
+  {nombre:'Harina de carne y hueso',ms:93,pc:50.0,em:2.60,fdn:0,ca:9.5,p:4.5,uso:'Porcinos · Aves',species:['Porcinos']},
+  {nombre:'Urea (NNP)',ms:98,pc:281,em:0,fdn:0,ca:0,p:0,uso:'Bovinos (solo rumiantes, máx 1%)',species:['Bovinos']},
+  // Forrajes y subproductos
+  {nombre:'Rastrojo de maíz',ms:88,pc:5.5,em:1.60,fdn:68,ca:0.30,p:0.08,uso:'Bovinos · Équidos (forraje bajo costo)',species:['Bovinos','Équidos']},
+  {nombre:'Heno de alfalfa',ms:90,pc:18.0,em:2.20,fdn:40,ca:1.50,p:0.25,uso:'Équidos · Bovinos lecheros',species:['Bovinos','Équidos']},
+  {nombre:'Pasto ryegrass (fresco)',ms:20,pc:12.0,em:2.50,fdn:55,ca:0.45,p:0.35,uso:'Bovinos · Équidos (pastoreo)',species:['Bovinos','Équidos']},
+  {nombre:'Silo de maíz',ms:32,pc:8.0,em:2.45,fdn:48,ca:0.25,p:0.20,uso:'Bovinos (forraje fermentado)',species:['Bovinos']},
+  {nombre:'Bagazo de caña',ms:90,pc:2.5,em:1.25,fdn:82,ca:0.30,p:0.05,uso:'Bovinos extensivo (volumen)',species:['Bovinos']},
+  // Minerales / otros
+  {nombre:'Bicarbonato de sodio',ms:99,pc:0,em:0,fdn:0,ca:0,p:0,uso:'Bovinos (buffer ruminal)',species:['Bovinos']},
+  {nombre:'Premezcla mineral-vitamínica',ms:97,pc:0,em:0,fdn:0,ca:18.0,p:9.0,uso:'Todas las especies (2-4% ración)',species:['Bovinos','Porcinos','Équidos']},
+  {nombre:'Lisina HCl (sintética)',ms:98,pc:95,em:3.80,fdn:0,ca:0,p:0,uso:'Porcinos (aminoácido limitante)',species:['Porcinos']},
+  {nombre:'Aceite vegetal (palma/soya)',ms:99,pc:0,em:8.30,fdn:0,ca:0,p:0,uso:'Porcinos · Piensos densidad energética',species:['Porcinos']}
+];
+
+const RACIONES = [
+  {
+    id:'bov-arrancador',
+    especie:'🐄 Bovino',
+    etapa:'Arrancador (0–90 días)',
+    desc:'Ración de arranque para becerros en corral. Alta proteína para máxima ganancia.',
+    ingredientes:[
+      {nombre:'Maíz amarillo molido',pct:40},
+      {nombre:'Sorgo grano molido',pct:18},
+      {nombre:'Pasta de soya',pct:22},
+      {nombre:'Harinolina',pct:8},
+      {nombre:'Melaza de caña',pct:8},
+      {nombre:'Premezcla mineral',pct:3},
+      {nombre:'Urea',pct:1}
+    ],
+    resultados:{pc:'16.2%',em:'3.05 Mcal/kg',fca:'5.5',gdp:'1.0–1.1 kg/día',consumo:'2.5% PV'},
+    nota:'Proveer forraje de transición (heno) durante los primeros 15 días al 20% de la ración.'
+  },
+  {
+    id:'bov-desarrollo',
+    especie:'🐄 Bovino',
+    etapa:'Desarrollo (90–180 días)',
+    desc:'Ración de desarrollo con rastrojo y melaza para reducir costos manteniendo ganancia.',
+    ingredientes:[
+      {nombre:'Rastrojo de maíz',pct:30},
+      {nombre:'Maíz amarillo molido',pct:28},
+      {nombre:'Melaza de caña',pct:12},
+      {nombre:'Pasta de soya',pct:16},
+      {nombre:'Harinolina',pct:8},
+      {nombre:'Premezcla mineral',pct:4},
+      {nombre:'Urea',pct:2}
+    ],
+    resultados:{pc:'14.1%',em:'2.55 Mcal/kg',fca:'6.8',gdp:'0.8–1.0 kg/día',consumo:'2.3% PV'},
+    nota:'La urea no debe exceder 1% del total. Mezclar bien con melaza. Agua ad libitum obligatorio.'
+  },
+  {
+    id:'bov-finalizacion',
+    especie:'🐄 Bovino',
+    etapa:'Finalización (180–240 días)',
+    desc:'Ración alta en energía para maximizar deposición de grasa y calidad de canal.',
+    ingredientes:[
+      {nombre:'Maíz amarillo molido',pct:55},
+      {nombre:'Sorgo grano molido',pct:15},
+      {nombre:'Pasta de soya',pct:12},
+      {nombre:'Melaza de caña',pct:10},
+      {nombre:'Grasa protegida',pct:3},
+      {nombre:'Premezcla mineral',pct:4},
+      {nombre:'Bicarbonato de sodio',pct:1}
+    ],
+    resultados:{pc:'12.5%',em:'3.25 Mcal/kg',fca:'8.2',gdp:'0.7–0.9 kg/día',consumo:'2.0% PV'},
+    nota:'El bicarbonato de sodio (buffer ruminal) previene acidosis con dietas altas en almidón.'
+  },
+  {
+    id:'porc-crecimiento',
+    especie:'🐷 Porcino',
+    etapa:'Crecimiento (30–60 kg)',
+    desc:'Ración sorgo-soya para fase de crecimiento. Ajuste de lisina para máxima eficiencia.',
+    ingredientes:[
+      {nombre:'Sorgo grano molido',pct:55},
+      {nombre:'Pasta de soya',pct:28},
+      {nombre:'Aceite vegetal',pct:3},
+      {nombre:'Salvado de trigo',pct:5},
+      {nombre:'Lisina HCl',pct:0.3},
+      {nombre:'Premezcla mineral',pct:3.7},
+      {nombre:'Harina de carne y hueso',pct:5}
+    ],
+    resultados:{pc:'18.2%',em:'3.25 Mcal/kg',fca:'2.3',gdp:'0.70–0.85 kg/día',consumo:'3.5% PV'},
+    nota:'La lisina es el aminoácido limitante #1 en porcinos. No escatimar en su inclusión.'
+  },
+  {
+    id:'porc-finalizacion',
+    especie:'🐷 Porcino',
+    etapa:'Finalización (60–110 kg)',
+    desc:'Reducción de proteína, mayor energía para depósito muscular y cobertura grasa óptima.',
+    ingredientes:[
+      {nombre:'Sorgo grano molido',pct:63},
+      {nombre:'Pasta de soya',pct:20},
+      {nombre:'Harinolina',pct:5},
+      {nombre:'Aceite vegetal',pct:4},
+      {nombre:'Lisina HCl',pct:0.3},
+      {nombre:'Premezcla mineral',pct:4},
+      {nombre:'Salvado de trigo',pct:3.7}
+    ],
+    resultados:{pc:'15.1%',em:'3.30 Mcal/kg',fca:'2.9',gdp:'0.80–0.95 kg/día',consumo:'2.8% PV'},
+    nota:'Reducir PC a 15–16% en finalización evita costos innecesarios sin afectar la ganancia.'
+  },
+  {
+    id:'equino-trabajo',
+    especie:'🐴 Équido',
+    etapa:'Trabajo moderado (500 kg)',
+    desc:'Ración equilibrada para caballo de trabajo. Alfalfa como base proteica y energética.',
+    ingredientes:[
+      {nombre:'Heno de alfalfa',pct:50},
+      {nombre:'Rastrojo de maíz',pct:20},
+      {nombre:'Maíz amarillo molido',pct:20},
+      {nombre:'Salvado de trigo',pct:8},
+      {nombre:'Premezcla mineral',pct:2}
+    ],
+    resultados:{pc:'14.8%',em:'2.38 Mcal/kg',fca:'N/A',gdp:'Mantenimiento',consumo:'2.3% PV'},
+    nota:'Para caballos de trabajo intenso, aumentar el maíz al 30% y reducir el rastrojo al 10%.'
+  }
+];
+
+let currentIngSpecies = null;
+let currentNutriTab = 'ingredientes';
+
+function setNutriTab(tab, btn) {
+  currentNutriTab = tab;
+  document.querySelectorAll('.nutri-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.nutri-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('np-' + tab).classList.add('active');
+}
+
+function renderIngredientes() {
+  const search = (document.getElementById('ing-search')?.value || '').toLowerCase();
+  const tbody = document.getElementById('ing-tbody');
+  const filtered = INGREDIENTES.filter(i => {
+    const matchText = i.nombre.toLowerCase().includes(search) || i.uso.toLowerCase().includes(search);
+    const matchSpecies = !currentIngSpecies || i.species.includes(currentIngSpecies);
+    return matchText && matchSpecies;
+  });
+  tbody.innerHTML = filtered.map(i => {
+    const pcLevel = i.pc > 30 ? 'ing-level-high' : i.pc > 15 ? 'ing-level-med' : 'ing-level-low';
+    const emLevel = i.em > 3 ? 'ing-level-high' : i.em > 2 ? 'ing-level-med' : 'ing-level-low';
+    return `<tr>
+      <td style="font-weight:500;color:var(--text)">${i.nombre}</td>
+      <td>${i.ms}%</td>
+      <td class="${pcLevel}">${i.pc}%</td>
+      <td class="${emLevel}">${i.em > 0 ? i.em.toFixed(2) : '—'}</td>
+      <td>${i.fdn > 0 ? i.fdn + '%' : '—'}</td>
+      <td>${i.ca > 0 ? i.ca + '%' : '—'}</td>
+      <td>${i.p > 0 ? i.p + '%' : '—'}</td>
+      <td style="font-size:11px;color:rgba(163,163,163,.6)">${i.uso}</td>
+    </tr>`;
+  }).join('');
+}
+
+function filterIngredientes() { renderIngredientes(); }
+
+function filterIngBySpecies(species, btn) {
+  currentIngSpecies = species;
+  document.querySelectorAll('#ing-species-filter .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderIngredientes();
+}
+
+function renderRaciones() {
+  const grid = document.getElementById('raciones-grid');
+  grid.innerHTML = RACIONES.map(r => {
+    const ingRows = r.ingredientes.map(ing => `
+      <div class="rac-ing-row">
+        <div>
+          <div class="rac-ing-name">${ing.nombre}</div>
+          <div class="rac-ing-bar"><div class="rac-ing-fill" style="width:${Math.min(ing.pct*2, 100)}%"></div></div>
+        </div>
+        <div class="rac-ing-pct">${ing.pct}%</div>
+      </div>
+    `).join('');
+    return `
+      <div class="rac-card">
+        <div class="rac-tag">${r.especie}</div>
+        <h4 style="font-size:18px;font-family:'Cormorant Garamond',serif;margin-bottom:8px">${r.etapa}</h4>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:24px;line-height:1.6">${r.desc}</p>
+        <div style="margin-bottom:16px">${ingRows}</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid rgba(197,160,89,.08);padding-top:16px;margin-bottom:16px">
+          <div style="text-align:center"><div style="font-size:16px;color:var(--gold);font-family:'Cormorant Garamond',serif">${r.resultados.pc}</div><div style="font-size:7px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-top:2px">Proteína</div></div>
+          <div style="text-align:center"><div style="font-size:16px;color:var(--gold);font-family:'Cormorant Garamond',serif">${r.resultados.em}</div><div style="font-size:7px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-top:2px">Energía</div></div>
+          <div style="text-align:center"><div style="font-size:16px;color:var(--gold);font-family:'Cormorant Garamond',serif">${r.resultados.gdp}</div><div style="font-size:7px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-top:2px">GDP</div></div>
+        </div>
+        ${r.nota ? `<div style="padding:12px 14px;background:rgba(197,160,89,.04);border-left:2px solid rgba(197,160,89,.3);font-size:11px;color:rgba(163,163,163,.6);line-height:1.6">💡 ${r.nota}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+}
+
+function calcularRacion() {
+  const species = document.getElementById('calc-species').value;
+  const weight = parseFloat(document.getElementById('calc-weight').value) || 250;
+  const stage = document.getElementById('calc-stage').value;
+  const count = parseInt(document.getElementById('calc-count').value) || 1;
+  const result = document.getElementById('calc-result');
+
+  // Tablas de requerimiento por especie y etapa
+  const reqs = {
+    bovino: {
+      arrancador: {consumoPct:2.5, pc:16, em:3.05, gdp:'0.9–1.1 kg'},
+      desarrollo: {consumoPct:2.3, pc:14, em:2.55, gdp:'0.8–1.0 kg'},
+      finalizacion: {consumoPct:2.0, pc:12.5, em:3.25, gdp:'0.7–0.9 kg'}
+    },
+    'bovino-lechero': {
+      arrancador: {consumoPct:3.0, pc:18, em:3.20, gdp:'Pico producción'},
+      desarrollo: {consumoPct:2.8, pc:16, em:3.00, gdp:'Mantenimiento'},
+      finalizacion: {consumoPct:2.5, pc:15, em:2.80, gdp:'Gestación'}
+    },
+    porcino: {
+      arrancador: {consumoPct:5.0, pc:22, em:3.40, gdp:'0.4–0.5 kg'},
+      desarrollo: {consumoPct:3.5, pc:18, em:3.25, gdp:'0.7–0.85 kg'},
+      finalizacion: {consumoPct:2.8, pc:15, em:3.30, gdp:'0.8–0.95 kg'}
+    },
+    equino: {
+      arrancador: {consumoPct:2.5, pc:15, em:2.60, gdp:'Crecimiento potro'},
+      desarrollo: {consumoPct:2.0, pc:12, em:2.40, gdp:'Trabajo moderado'},
+      finalizacion: {consumoPct:1.8, pc:10, em:2.20, gdp:'Mantenimiento'}
+    }
+  };
+
+  const r = reqs[species][stage];
+  const consumoMSkg = (weight * r.consumoPct / 100).toFixed(1);
+  const consumoTotalkg = (consumoMSkg / 0.88).toFixed(1); // ajuste por humedad
+  const pcKg = (consumoMSkg * r.pc / 100).toFixed(2);
+  const emMcal = (consumoMSkg * r.em).toFixed(1);
+  const totalHatoMS = (consumoMSkg * count).toFixed(0);
+  const totalHatoFresh = (consumoTotalkg * count).toFixed(0);
+
+  const speciesLabel = {bovino:'Bovino engorda',porcino:'Porcino',equino:'Équido','bovino-lechero':'Bovino lechero'}[species];
+  const stageLabel = {arrancador:'Arrancador / Pre-inicio',desarrollo:'Desarrollo / Crecimiento',finalizacion:'Finalización'}[stage];
+
+  result.innerHTML = `
+    <div style="margin-bottom:24px">
+      <p style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:rgba(197,160,89,.5);margin-bottom:4px">${speciesLabel} · ${stageLabel} · Peso: ${weight} kg</p>
+      <h4 style="font-size:22px;font-family:'Cormorant Garamond',serif">Requerimientos por Animal / Día</h4>
+    </div>
+    <div class="calc-result-grid">
+      <div class="calc-result-box">
+        <div class="calc-result-val">${consumoMSkg} kg</div>
+        <div class="calc-result-label">Materia Seca</div>
+      </div>
+      <div class="calc-result-box">
+        <div class="calc-result-val">${consumoTotalkg} kg</div>
+        <div class="calc-result-label">Alimento tal cual</div>
+      </div>
+      <div class="calc-result-box">
+        <div class="calc-result-val">${r.pc}%</div>
+        <div class="calc-result-label">Proteína requerida</div>
+      </div>
+      <div class="calc-result-box">
+        <div class="calc-result-val">${emMcal}</div>
+        <div class="calc-result-label">Mcal EM / día</div>
+      </div>
+      <div class="calc-result-box">
+        <div class="calc-result-val">${r.gdp}</div>
+        <div class="calc-result-label">GDP esperada</div>
+      </div>
+      <div class="calc-result-box">
+        <div class="calc-result-val">${r.consumoPct}%</div>
+        <div class="calc-result-label">% Peso vivo</div>
+      </div>
+    </div>
+    ${count > 1 ? `
+    <div style="background:rgba(197,160,89,.06);border:1px solid rgba(197,160,89,.15);padding:20px 24px;margin-top:8px">
+      <p style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--gold);margin-bottom:12px">Hato completo: ${count} animales</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div><span style="font-size:22px;font-weight:300;color:var(--gold)">${totalHatoMS} kg MS</span><br/><span style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.2em">Total materia seca / día</span></div>
+        <div><span style="font-size:22px;font-weight:300;color:var(--gold)">${totalHatoFresh} kg</span><br/><span style="font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.2em">Total alimento fresco / día</span></div>
+      </div>
+    </div>` : ''}
+  `;
+}
+
 // =================== INIT ===================
 buildFilterBar();
 renderGuides();
@@ -1232,6 +1763,9 @@ buildMentorCatTabs();
 renderMentors();
 renderQuizList();
 animateEcoBar();
+renderIngredientes();
+renderRaciones();
+calcularRacion();
 </script>
 </body>
 </html>
