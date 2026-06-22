@@ -125,54 +125,67 @@ input{font-family:'Inter',sans-serif;color:var(--text)}
 #mentors{padding:128px 0;position:relative}
 #mentors::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(197,160,89,.2),transparent)}
 .mentors-header{text-align:center;margin-bottom:64px}
-.mentors-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:48px}
-.mentors-grid{display:grid;grid-template-columns:4fr 8fr;gap:64px;align-items:start}
-.mentor-list{display:flex;flex-direction:column;gap:20px}
-.mentor-btn{display:flex;align-items:center;gap:24px;padding:24px;border:1px solid rgba(197,160,89,.05);cursor:pointer;text-align:left;transition:all .2s;position:relative;overflow:hidden}
-.mentor-btn::before{content:'';position:absolute;left:0;top:0;width:3px;height:100%;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .3s}
-.mentor-btn:hover::before,.mentor-btn.active::before{transform:scaleY(1)}
-.mentor-btn.active{background:rgba(15,15,15,.8);border-color:rgba(197,160,89,.4)}
-.mentor-btn img{width:72px;height:72px;object-fit:cover;border:1px solid rgba(197,160,89,.1);filter:grayscale(100%);transition:filter .4s}
-.mentor-btn:hover img,.mentor-btn.active img{filter:grayscale(0)}
-.mentor-btn h4{font-size:18px;font-family:'Cormorant Garamond',serif;margin-bottom:4px}
-.mentor-btn p{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:rgba(163,163,163,.4)}
-.mentor-btn.active p{color:var(--gold)}
-.mentor-detail{background:rgba(15,15,15,.4);border:1px solid var(--border)}
-.mentor-stats{padding:40px;background:rgba(15,15,15,.8);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:32px;border-bottom:1px solid rgba(197,160,89,.1)}
-.stat-group{display:flex;align-items:center;gap:40px}
+.mentors-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:48px}
+/* Learning path bar */
+.learning-path{display:flex;align-items:center;gap:0;margin-bottom:64px;overflow-x:auto;padding-bottom:8px}
+.lp-step{display:flex;align-items:center;gap:0;flex-shrink:0}
+.lp-node{padding:10px 20px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.25em;border:1px solid rgba(197,160,89,.2);color:var(--muted);background:rgba(15,15,15,.5);white-space:nowrap;transition:all .2s;cursor:default}
+.lp-node.active{border-color:var(--gold);color:var(--gold);background:rgba(197,160,89,.08)}
+.lp-arrow{color:rgba(197,160,89,.3);font-size:14px;margin:0 4px}
+/* Mentor grid: cards layout (inspired by learnhouse/classroomio) */
+.mentors-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:64px}
+.mentor-card{background:rgba(15,15,15,.5);border:1px solid rgba(197,160,89,.08);padding:0;overflow:hidden;cursor:pointer;transition:border .3s,transform .3s;position:relative}
+.mentor-card:hover{border-color:rgba(197,160,89,.4);transform:translateY(-6px)}
+.mentor-card.active{border-color:var(--gold);box-shadow:0 0 30px rgba(197,160,89,.12)}
+.mentor-card-img{width:100%;aspect-ratio:1;object-fit:cover;filter:grayscale(100%);transition:filter .5s;display:block}
+.mentor-card:hover .mentor-card-img,.mentor-card.active .mentor-card-img{filter:grayscale(0)}
+.mentor-card-body{padding:20px}
+.mentor-card-name{font-size:16px;font-family:'Cormorant Garamond',serif;margin-bottom:4px}
+.mentor-card-spec{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:rgba(197,160,89,.7);margin-bottom:12px}
+.mentor-skills{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{font-size:8px;font-weight:600;text-transform:uppercase;letter-spacing:.15em;padding:3px 10px;border:1px solid rgba(197,160,89,.15);color:var(--muted)}
+.free-badge{position:absolute;top:12px;right:12px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:#22c55e;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;padding:4px 10px}
+/* Detail panel */
+.mentor-detail-panel{background:rgba(15,15,15,.4);border:1px solid var(--border);display:none}
+.mentor-detail-panel.open{display:block}
+.mentor-stats{padding:32px 40px;background:rgba(15,15,15,.8);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;border-bottom:1px solid rgba(197,160,89,.1)}
+.stat-group{display:flex;align-items:center;gap:32px}
 .stat{text-align:center}
-.stat-val{font-size:28px;font-weight:300;color:var(--gold)}
+.stat-val{font-size:26px;font-weight:300;color:var(--gold)}
 .stat-label{font-size:8px;text-transform:uppercase;letter-spacing:0.4em;color:var(--muted)}
-.divider{width:1px;height:48px;background:rgba(197,160,89,.1)}
+.divider{width:1px;height:40px;background:rgba(197,160,89,.1)}
+.mentor-action-btns{display:flex;gap:12px;flex-wrap:wrap}
 .mentor-tabs-nav{display:flex;background:rgba(15,15,15,.4)}
-.mtab{flex:1;padding:24px 16px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:rgba(163,163,163,.4);border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.mtab{flex:1;padding:20px 12px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.3em;color:rgba(163,163,163,.4);border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
 .mtab.active{color:var(--gold);border-bottom-color:var(--gold);background:rgba(197,160,89,.05)}
-.mentor-content{padding:48px;min-height:380px}
+.mentor-content{padding:40px;min-height:340px}
 .mc-panel{display:none}
 .mc-panel.active{display:block}
-.mentor-name{font-size:36px;margin-bottom:16px}
-.mentor-spec{font-size:22px;font-style:italic;color:var(--gold);font-family:'Cormorant Garamond',serif;margin-bottom:24px}
-.mentor-bio{font-size:16px;color:var(--muted);line-height:1.8;max-width:560px}
+.mentor-name{font-size:34px;margin-bottom:12px}
+.mentor-spec{font-size:20px;font-style:italic;color:var(--gold);font-family:'Cormorant Garamond',serif;margin-bottom:16px}
+.mentor-bio{font-size:15px;color:var(--muted);line-height:1.8;max-width:560px;margin-bottom:20px}
+.mentor-tags{display:flex;flex-wrap:wrap;gap:8px}
 .video-wrap{position:relative;background:var(--dark);border:1px solid rgba(197,160,89,.1);overflow:hidden}
 .video-wrap video{width:100%;display:block;filter:grayscale(100%);opacity:.4;transition:all 1s}
 .video-wrap:hover video{filter:grayscale(0);opacity:1}
 .video-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:opacity .3s}
 .video-wrap:hover .video-play{opacity:0}
 .play-icon{width:96px;height:96px;border:1px solid rgba(197,160,89,.3);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:28px;backdrop-filter:blur(8px)}
-.testimonials-list{display:flex;flex-direction:column;gap:24px}
-.testimonial{padding:32px;background:rgba(15,15,15,.3);border:1px solid rgba(197,160,89,.05);position:relative;overflow:hidden}
+.testimonials-list{display:flex;flex-direction:column;gap:20px}
+.testimonial{padding:28px;background:rgba(15,15,15,.3);border:1px solid rgba(197,160,89,.05);position:relative;overflow:hidden}
 .testimonial::before{content:'';position:absolute;left:0;top:0;width:3px;height:0;background:var(--gold);transition:height .4s}
 .testimonial:hover::before{height:100%}
-.testimonial blockquote{font-style:italic;font-size:17px;margin-bottom:16px;font-family:'Cormorant Garamond',serif;line-height:1.6}
+.testimonial blockquote{font-style:italic;font-size:16px;margin-bottom:12px;font-family:'Cormorant Garamond',serif;line-height:1.6}
 .testimonial cite{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.4em;color:var(--gold)}
-.calendar-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.cal-slot{display:flex;align-items:center;gap:20px;padding:20px;background:rgba(15,15,15,.3);border:1px solid rgba(197,160,89,.05);transition:border .2s}
+.calendar-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cal-slot{display:flex;align-items:center;gap:16px;padding:16px;background:rgba(15,15,15,.3);border:1px solid rgba(197,160,89,.05);transition:border .2s}
 .cal-slot:hover{border-color:rgba(197,160,89,.2)}
-.cal-icon{width:44px;height:44px;border:1px solid rgba(197,160,89,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:16px;flex-shrink:0;transition:all .2s}
+.cal-icon{width:40px;height:40px;border:1px solid rgba(197,160,89,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:14px;flex-shrink:0;transition:all .2s}
 .cal-slot:hover .cal-icon{background:var(--gold);color:var(--dark)}
 .cal-slot span{font-size:13px;font-weight:300;letter-spacing:.05em}
-.cal-note{font-size:10px;color:rgba(163,163,163,.4);text-transform:uppercase;letter-spacing:0.2em;font-style:italic;margin-top:32px}
-@media(max-width:900px){.mentors-grid{grid-template-columns:1fr}}
+.cal-note{font-size:10px;color:rgba(34,197,94,.5);text-transform:uppercase;letter-spacing:0.2em;font-style:italic;margin-top:24px}
+@media(max-width:900px){.mentors-cards-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.mentors-cards-grid{grid-template-columns:1fr}}
 
 /* =================== QUIZ =================== */
 #quizzes{padding:128px 0;background:var(--surface);border-top:1px solid rgba(197,160,89,.05);border-bottom:1px solid rgba(197,160,89,.05)}
@@ -321,6 +334,10 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
 /* Stars for rating */
 .stars{display:flex;gap:2px;margin-top:4px}
 .star{color:var(--gold);font-size:10px}
+
+/* Species quick-select buttons */
+.species-btn{padding:6px 14px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.15em;border:1px solid rgba(197,160,89,.2);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s}
+.species-btn:hover,.species-btn.active{background:rgba(197,160,89,.1);border-color:var(--gold);color:var(--gold)}
 </style>
 </head>
 <body>
@@ -334,10 +351,10 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
   <div class="nav-links">
     <a href="#academy">Academia</a>
     <a href="#mentors">Mentores</a>
-    <a href="#pricing">Inversión</a>
     <a href="#ai-assistance">Consultoría IA</a>
     <a href="#quizzes">Certificaciones</a>
-    <button class="btn-luxury" style="padding:10px 24px">Área Miembros</button>
+    <a href="#community">Comunidad</a>
+    <button class="btn-luxury" style="padding:10px 24px" onclick="alert('Registro gratuito próximamente. ¡Únete a la lista de espera!')">Unirse Gratis</button>
   </div>
 </nav>
 
@@ -348,12 +365,19 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
   </div>
   <div class="hero-inner">
     <div>
-      <span class="sec-label">Estándar de Excelencia Animal</span>
+      <span class="sec-label">Conocimiento Abierto · Completamente Gratis</span>
       <h1 class="hero-title">Animal <br/><em>Mastery</em></h1>
-      <p class="hero-desc">La institución de élite dedicada a la maestría en el cuidado y producción animal. Donde la ciencia de vanguardia se encuentra con la sabiduría ancestral.</p>
+      <p class="hero-desc">La plataforma comunitaria de referencia para el cuidado y producción animal. Guías técnicas, mentores expertos y certificaciones — sin costo, para todos.</p>
       <div class="hero-btns">
-        <a href="#academy" class="btn-luxury">Explorar Currículum →</a>
-        <a href="#mentors" class="btn-outline">Nuestra Facultad</a>
+        <a href="#academy" class="btn-luxury">Explorar Conocimiento →</a>
+        <a href="#mentors" class="btn-outline">Conocer Mentores</a>
+      </div>
+      <div style="margin-top:48px;display:flex;gap:40px;flex-wrap:wrap">
+        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">18+</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Mentores Expertos</span></div>
+        <div style="width:1px;background:rgba(197,160,89,.15)"></div>
+        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">6</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Escuelas Especializadas</span></div>
+        <div style="width:1px;background:rgba(197,160,89,.15)"></div>
+        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">100%</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Acceso Libre</span></div>
       </div>
     </div>
     <div class="hero-img-wrap">
@@ -367,9 +391,9 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
   <div class="section-inner">
     <div class="academy-header">
       <div style="max-width:560px">
-        <span class="sec-label">Biblioteca de Conocimiento de Élite</span>
-        <h2 style="font-size:clamp(36px,4vw,56px);margin-bottom:20px">Currículum Académico Superior</h2>
-        <p class="muted" style="font-size:15px;line-height:1.8">Acceda a nuestra colección exclusiva de protocolos de maestría, guías técnicas de alta precisión y estrategias de rentabilidad desarrolladas por los líderes globales de la industria.</p>
+        <span class="sec-label">Biblioteca Abierta de Conocimiento</span>
+        <h2 style="font-size:clamp(36px,4vw,56px);margin-bottom:20px">Guías Técnicas Gratuitas</h2>
+        <p class="muted" style="font-size:15px;line-height:1.8">Accede sin restricciones a protocolos técnicos, guías de campo y estrategias de producción desarrolladas por expertos. Todo el conocimiento, disponible para todos.</p>
       </div>
       <div class="academy-search">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -394,8 +418,8 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
     </div>
     <div class="modal-body md-content" id="modal-body"></div>
     <div class="modal-footer">
-      <span style="font-size:10px;text-transform:uppercase;letter-spacing:0.3em;color:rgba(163,163,163,.4)">Animal Master Academy — Documento Confidencial para Miembros</span>
-      <button class="btn-luxury" onclick="alert('Función de descarga disponible para miembros activos.')">Descargar PDF Maestro</button>
+      <span style="font-size:10px;text-transform:uppercase;letter-spacing:0.3em;color:rgba(163,163,163,.4)">Animal Master Academy — Acceso Libre y Gratuito</span>
+      <button class="btn-luxury" onclick="alert('Descarga gratuita disponible próximamente. ¡Sin registro requerido!')">Descargar PDF Gratis</button>
     </div>
   </div>
 </div>
@@ -404,15 +428,17 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
 <section id="mentors">
   <div class="section-inner">
     <div class="mentors-header">
-      <span class="sec-label" style="display:block;text-align:center">Facultad de Expertos</span>
-      <h2 style="font-size:clamp(40px,5vw,72px);margin-bottom:24px">Mentores de Élite</h2>
-      <p class="muted" style="font-size:15px;max-width:560px;margin:0 auto 48px;line-height:1.8">Seleccione una especialización para conocer a los tres mentores que dominan esa área.</p>
+      <span class="sec-label" style="display:block;text-align:center">Red de Expertos Comunitarios</span>
+      <h2 style="font-size:clamp(40px,5vw,72px);margin-bottom:24px">Mentores Abiertos</h2>
+      <p class="muted" style="font-size:15px;max-width:600px;margin:0 auto 48px;line-height:1.8">18 expertos de campo disponibles para la comunidad. Selecciona una escuela y explora sus perfiles, rutas de aprendizaje y disponibilidad — sin costo.</p>
       <div class="mentors-tabs" id="mentor-cat-tabs"></div>
     </div>
-    <div class="mentors-grid">
-      <div class="mentor-list" id="mentor-list"></div>
-      <div id="mentor-detail"></div>
-    </div>
+    <!-- Learning Path Bar -->
+    <div class="learning-path" id="learning-path"></div>
+    <!-- Mentor Cards Grid -->
+    <div class="mentors-cards-grid" id="mentor-cards-grid"></div>
+    <!-- Detail Panel -->
+    <div class="mentor-detail-panel" id="mentor-detail"></div>
   </div>
 </section>
 
@@ -428,89 +454,51 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
   </div>
 </section>
 
-<!-- =================== PRICING =================== -->
-<section id="pricing">
-  <div class="section-inner">
-    <div class="pricing-header">
-      <span class="sec-label" style="display:block;text-align:center">Inversión en Excelencia</span>
-      <h2 style="font-size:clamp(40px,5vw,72px);margin-bottom:24px">Estructura de Membresía</h2>
-      <p class="muted" style="font-size:15px;max-width:560px;margin:0 auto;line-height:1.8">Nuestras membresías están diseñadas para aquellos que buscan el más alto estándar en la industria animal.</p>
+<!-- =================== COMMUNITY IMPACT =================== -->
+<section id="community" style="padding:128px 0;background:var(--surface);position:relative;overflow:hidden;border-top:1px solid rgba(197,160,89,.05)">
+  <div style="position:absolute;right:0;top:0;width:33%;height:100%;background:rgba(197,160,89,.04);filter:blur(120px);border-radius:50%;transform:translateX(50%) translateY(-30%)"></div>
+  <div class="section-inner" style="position:relative;z-index:1">
+    <div style="text-align:center;margin-bottom:80px">
+      <span class="sec-label" style="display:block;text-align:center">Impacto Real · Conocimiento Libre</span>
+      <h2 style="font-size:clamp(36px,4vw,60px);margin-bottom:20px">Por Qué Animal Master <em style="color:var(--gold)">es Gratis</em></h2>
+      <p class="muted" style="font-size:15px;max-width:600px;margin:0 auto;line-height:1.8">Creemos que el conocimiento técnico en producción animal no debería tener barreras. Una sola decisión bien informada puede cambiar la economía de una familia productora.</p>
     </div>
-    <div class="pricing-grid">
-      <div class="plan-card">
-        <div class="plan-name">Essential</div>
-        <div class="plan-price"><span class="plan-amount">$499</span><span class="plan-period">/ mes</span></div>
-        <ul class="plan-features">
-          <li>Acceso a todas las guías (PDF)</li>
-          <li>Webinars mensuales en vivo</li>
-          <li>Certificados de participación</li>
-          <li>Comunidad exclusiva de alumnos</li>
-        </ul>
-        <button class="plan-btn" onclick="alert('Iniciando suscripción al plan Essential. Redirigiendo a pasarela de pago segura...')">Adquirir Membresía</button>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-bottom:64px">
+      <div class="eco-card">
+        <div class="eco-icon">🌍</div>
+        <h4>Acceso Universal</h4>
+        <p>Cualquier persona — productor familiar, veterinario rural o estudiante — accede al mismo conocimiento de nivel profesional. Sin suscripción, sin tarjeta de crédito.</p>
       </div>
-      <div class="plan-card highlighted">
-        <div class="plan-badge">Recomendado</div>
-        <div class="plan-name">Mastery</div>
-        <div class="plan-price"><span class="plan-amount">$1,299</span><span class="plan-period">/ mes</span></div>
-        <ul class="plan-features">
-          <li>Todo lo del plan Essential</li>
-          <li>Asistencia 1-a-1 con Mentor AI ilimitada</li>
-          <li>1 Sesión grupal de mentoría al mes</li>
-          <li>Acceso anticipado a nuevas guías</li>
-          <li>Descuentos en eventos presenciales</li>
-        </ul>
-        <button class="plan-btn" onclick="alert('Iniciando suscripción al plan Mastery. Redirigiendo a pasarela de pago segura...')">Adquirir Membresía</button>
+      <div class="eco-card">
+        <div class="eco-icon">🤝</div>
+        <h4>Red de Mentores Voluntarios</h4>
+        <p>Nuestros 18 expertos contribuyen su conocimiento porque creen en democratizar la zootecnia. La comunidad les reconoce, no una transacción económica.</p>
       </div>
-      <div class="plan-card">
-        <div class="plan-name">Elite Executive</div>
-        <div class="plan-price"><span class="plan-amount">$4,500</span><span class="plan-period">/ año</span></div>
-        <ul class="plan-features">
-          <li>Todo lo del plan Mastery</li>
-          <li>2 Sesiones privadas con mentores al mes</li>
-          <li>Auditoría técnica anual de tu proyecto</li>
-          <li>Soporte prioritario 24/7</li>
-          <li>Acceso para hasta 5 miembros del equipo</li>
-        </ul>
-        <button class="plan-btn" onclick="alert('Iniciando suscripción al plan Elite Executive. Redirigiendo a pasarela de pago segura...')">Adquirir Membresía</button>
+      <div class="eco-card">
+        <div class="eco-icon">📊</div>
+        <h4>Impacto Medible</h4>
+        <p>Un productor que aplica un solo protocolo de bioseguridad puede reducir la mortalidad animal hasta 40%. El conocimiento libre genera valor real en el campo.</p>
+      </div>
+      <div class="eco-card">
+        <div class="eco-icon">🔬</div>
+        <h4>Ciencia Aplicada</h4>
+        <p>El mercado de educación agropecuaria crece 12% anual. Animal Master cierra la brecha entre investigación académica y práctica de campo con recursos abiertos.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- =================== ECONOMIC STUDY =================== -->
-<section id="economic">
-  <div class="section-inner">
-    <div class="eco-grid">
+    <!-- Community stats bar -->
+    <div style="background:rgba(15,15,15,.5);border:1px solid var(--border);padding:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;text-align:center">
+      <div><div style="font-size:42px;font-weight:300;color:var(--gold);font-family:'Cormorant Garamond',serif">18+</div><div style="font-size:9px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted);margin-top:8px">Mentores Activos</div></div>
+      <div style="width:1px;background:rgba(197,160,89,.1);margin:0 auto"></div>
+      <div><div style="font-size:42px;font-weight:300;color:var(--gold);font-family:'Cormorant Garamond',serif">9</div><div style="font-size:9px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted);margin-top:8px">Guías Técnicas</div></div>
+      <div style="width:1px;background:rgba(197,160,89,.1);margin:0 auto"></div>
+      <div><div style="font-size:42px;font-weight:300;color:var(--gold);font-family:'Cormorant Garamond',serif">6</div><div style="font-size:9px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted);margin-top:8px">Escuelas Animales</div></div>
+      <div style="width:1px;background:rgba(197,160,89,.1);margin:0 auto"></div>
+      <div><div style="font-size:42px;font-weight:300;color:var(--gold);font-family:'Cormorant Garamond',serif">$0</div><div style="font-size:9px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted);margin-top:8px">Costo de Acceso</div></div>
+      <div style="width:1px;background:rgba(197,160,89,.1);margin:0 auto"></div>
       <div>
-        <span class="sec-label">Análisis de Valor</span>
-        <h2 style="font-size:clamp(34px,4vw,56px);margin-bottom:32px;line-height:1.1">Estudio Económico y <br/><em style="color:var(--gold)">ROI Proyectado</em></h2>
-        <p class="muted" style="font-size:16px;line-height:1.8;margin-bottom:40px">Nuestra propuesta no es un gasto, es una inversión estratégica. Analizamos el mercado para asegurar que cada dólar invertido en Animal Master Academy retorne multiplicado en eficiencia y valor de mercado.</p>
-        <div class="eco-sub-grid">
-          <div class="eco-card">
-            <div class="eco-icon">📈</div>
-            <h4>Análisis de Mercado</h4>
-            <p>El mercado de la educación agropecuaria de alta gama está creciendo un 12% anual. Existe una brecha entre la educación tradicional y la aplicación técnica de vanguardia.</p>
-          </div>
-          <div class="eco-card">
-            <div class="eco-icon">🥧</div>
-            <h4>Estrategia de Precios</h4>
-            <p>Nuestra estrategia se basa en el 'Valor Percibido'. Un solo consejo técnico de nuestros mentores puede ahorrar miles de dólares en producción, justificando el ticket alto.</p>
-          </div>
-        </div>
-      </div>
-      <div class="eco-panel">
-        <h3>Justificación de Inversión</h3>
-        <div class="eco-roi">
-          <div class="eco-roi-icon">🛡️</div>
-          <div>
-            <h4>Proyección de ROI</h4>
-            <p>Se estima que un alumno de Animal Master recupera su inversión en la suscripción anual en los primeros 3-4 meses mediante la optimización de recursos y reducción de mortalidad animal.</p>
-          </div>
-        </div>
-        <div class="eco-bar-wrap">
-          <div class="eco-bar-label"><span>Market Value Index</span><span>9.8/10</span></div>
-          <div class="eco-bar-track"><div class="eco-bar-fill" id="eco-bar"></div></div>
-        </div>
+        <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.2em;margin-bottom:12px">Índice de Impacto</div>
+        <div style="height:4px;background:rgba(197,160,89,.1);overflow:hidden"><div class="eco-bar-fill" id="eco-bar" style="width:0"></div></div>
+        <div style="font-size:10px;color:var(--muted);margin-top:8px">9.8 / 10</div>
       </div>
     </div>
   </div>
@@ -521,27 +509,42 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
   <div class="section-inner">
     <div class="ai-grid">
       <div>
-        <span class="sec-label">Consultoría 24/7</span>
-        <h2 style="font-size:clamp(34px,4vw,56px);margin-bottom:32px;line-height:1.1">Asistencia de <br/><em style="color:var(--gold)">Inteligencia Superior</em></h2>
-        <p class="muted" style="font-size:16px;line-height:1.8">Nuestra IA ha sido entrenada con el corpus de conocimiento más avanzado en medicina veterinaria, zootecnia y gestión agropecuaria de élite.</p>
+        <span class="sec-label">Triage Veterinario · 24/7 Gratuito</span>
+        <h2 style="font-size:clamp(34px,4vw,56px);margin-bottom:32px;line-height:1.1">Veterinario <br/><em style="color:var(--gold)">Asistente IA</em></h2>
+        <p class="muted" style="font-size:16px;line-height:1.8;margin-bottom:32px">Describe los síntomas de tu animal y recibe una evaluación preliminar de urgencia, recomendaciones de primeros auxilios y orientación sobre cuándo consultar a un veterinario.</p>
         <div class="ai-features">
-          <div class="ai-feat"><div class="ai-feat-icon">✓</div><span class="muted" style="font-size:14px">Análisis de protocolos sanitarios</span></div>
-          <div class="ai-feat"><div class="ai-feat-icon">✓</div><span class="muted" style="font-size:14px">Optimización de dietas de alto rendimiento</span></div>
-          <div class="ai-feat"><div class="ai-feat-icon">✓</div><span class="muted" style="font-size:14px">Estrategias de escalabilidad productiva</span></div>
-          <div class="ai-feat"><div class="ai-feat-icon">✓</div><span class="muted" style="font-size:14px">Diagnóstico preliminar asistido</span></div>
+          <div class="ai-feat"><div class="ai-feat-icon">🔴</div><span class="muted" style="font-size:14px"><strong style="color:var(--text)">Urgente</strong> — Atención inmediata (1-2 hrs)</span></div>
+          <div class="ai-feat"><div class="ai-feat-icon">🟡</div><span class="muted" style="font-size:14px"><strong style="color:var(--text)">Moderado</strong> — Consulta en 24-48 horas</span></div>
+          <div class="ai-feat"><div class="ai-feat-icon">🟢</div><span class="muted" style="font-size:14px"><strong style="color:var(--text)">Rutina</strong> — Manejo en casa + consulta programada</span></div>
+          <div class="ai-feat"><div class="ai-feat-icon">💊</div><span class="muted" style="font-size:14px">Orientación de primeros auxilios y tratamiento</span></div>
+        </div>
+        <div style="margin-top:32px;padding:20px 24px;background:rgba(197,160,89,.05);border:1px solid rgba(197,160,89,.15);border-left:3px solid var(--gold)">
+          <p style="font-size:12px;color:var(--muted);line-height:1.7"><strong style="color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.2em">Aviso Legal</strong><br/>Este asistente proporciona orientación preliminar de triage. No sustituye el diagnóstico ni la prescripción de un médico veterinario certificado. Para prescripción de medicamentos, consulte siempre a su veterinario.</p>
         </div>
       </div>
-      <div class="chat-panel">
+      <div class="chat-panel" style="height:760px">
         <div class="chat-header">
-          <div class="chat-status"><div class="pulse-dot"></div>Consultor Ejecutivo Activo</div>
+          <div class="chat-status"><div class="pulse-dot"></div>VetMaster IA · Triage Activo</div>
           <div class="chat-dots"><span></span><span></span><span></span></div>
         </div>
+        <!-- Species quick-select -->
+        <div style="padding:16px 24px;border-bottom:1px solid rgba(197,160,89,.08);background:rgba(15,15,15,.6)">
+          <p style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:rgba(197,160,89,.5);margin-bottom:10px">Selecciona la especie:</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <button class="species-btn" onclick="setSpecies('🐄 Bovino')">🐄 Bovino</button>
+            <button class="species-btn" onclick="setSpecies('🐷 Porcino')">🐷 Porcino</button>
+            <button class="species-btn" onclick="setSpecies('🐴 Equino')">🐴 Equino</button>
+            <button class="species-btn" onclick="setSpecies('🐕 Canino')">🐕 Canino</button>
+            <button class="species-btn" onclick="setSpecies('🦜 Aviar')">🦜 Aviar</button>
+            <button class="species-btn" onclick="setSpecies('🐟 Acuícola')">🐟 Acuícola</button>
+          </div>
+        </div>
         <div class="chat-messages" id="main-chat-msgs">
-          <div class="msg-row model"><div class="msg-bubble">Bienvenido al Centro de Consultoría de Animal Master. Soy su asistente ejecutivo de IA. ¿En qué área técnica o estratégica de la gestión animal puedo asistirle hoy?</div></div>
+          <div class="msg-row model"><div class="msg-bubble">👋 Hola, soy <strong>VetMaster IA</strong>, tu asistente de triage veterinario. Selecciona la especie arriba y describe los síntomas de tu animal — edad, síntomas principales y hace cuánto tiempo los presenta — para recibir una evaluación de urgencia. <br/><br/>⚠️ <em>Orientación preliminar. No sustituye diagnóstico veterinario.</em></div></div>
         </div>
         <div class="chat-input-wrap">
           <div class="chat-input-row">
-            <input class="chat-input" id="main-chat-input" type="text" placeholder="Escriba su consulta técnica..." onkeypress="if(event.key==='Enter')sendMainChat()" />
+            <input class="chat-input" id="main-chat-input" type="text" placeholder="Ej: Mi vaca de 3 años lleva 6 horas sin comer, abdomen distendido del lado izquierdo..." onkeypress="if(event.key==='Enter')sendMainChat()" />
             <button class="chat-send" id="main-chat-send" onclick="sendMainChat()">➤</button>
           </div>
         </div>
@@ -559,15 +562,16 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
           <div class="nav-logo-box"><span>A</span></div>
           <span class="nav-logo-text">Animal<span class="gold">Master</span></span>
         </div>
-        <p class="footer-desc">La institución líder en formación de élite para el sector animal. Elevando los estándares de cuidado y producción a nivel global.</p>
+        <p class="footer-desc">La plataforma comunitaria de referencia para el cuidado y producción animal. Conocimiento técnico de alto nivel, libre y gratuito para todos.</p>
       </div>
       <div class="footer-col">
         <h4>Navegación</h4>
         <ul>
           <li><a href="#academy">Academia</a></li>
           <li><a href="#mentors">Mentores</a></li>
-          <li><a href="#pricing">Inversión</a></li>
+          <li><a href="#quizzes">Certificaciones</a></li>
           <li><a href="#ai-assistance">Consultoría IA</a></li>
+          <li><a href="#community">Comunidad</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -591,17 +595,23 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
 </footer>
 
 <!-- =================== FLOATING CHATBOT =================== -->
-<button class="float-btn" id="float-toggle" onclick="toggleFloat()">🤖</button>
+<button class="float-btn" id="float-toggle" onclick="toggleFloat()" title="VetMaster IA — Triage Veterinario">🐾</button>
 <div class="float-chat hidden" id="float-chat">
   <div class="float-chat-header">
-    <span class="upper gold">Consultor IA</span>
+    <div>
+      <span class="upper gold">VetMaster IA</span>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px;letter-spacing:.05em">Triage Veterinario Gratuito</div>
+    </div>
     <button onclick="toggleFloat()" style="color:var(--muted);font-size:16px;cursor:pointer">✕</button>
   </div>
+  <div style="padding:10px 16px;background:rgba(197,160,89,.04);border-bottom:1px solid rgba(197,160,89,.08)">
+    <p style="font-size:9px;color:rgba(197,160,89,.5);line-height:1.5">⚠️ Orientación preliminar. Consulte siempre a su veterinario.</p>
+  </div>
   <div class="float-chat-msgs" id="float-msgs">
-    <div class="float-msg model">Hola, soy tu asistente ejecutivo de IA. ¿En qué área técnica o estratégica puedo asistirle hoy?</div>
+    <div class="float-msg model">🐾 Hola, soy VetMaster IA. Describe los síntomas de tu animal — especie, edad y qué observas — y te doy una evaluación rápida de urgencia.</div>
   </div>
   <div class="float-input-wrap">
-    <input class="float-input" id="float-input" type="text" placeholder="Escriba su consulta..." onkeypress="if(event.key==='Enter')sendFloat()" />
+    <input class="float-input" id="float-input" type="text" placeholder="Especie + síntomas de tu animal..." onkeypress="if(event.key==='Enter')sendFloat()" />
   </div>
 </div>
 
@@ -638,36 +648,60 @@ const GUIDES = [
 ];
 
 const MENTORS = {
-  Porcine:[
-    {id:'p1',name:'Dr. Elena Rodriguez',specialty:'Especialista en Bienestar Porcino',bio:'PhD en Medicina Veterinaria por la Universidad de Utrecht. Experta en sistemas de producción sustentable y etología porcina aplicada.',image:'https://picsum.photos/seed/p1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Lun 10:00–14:00','Mie 15:00–18:00'],testimonials:[{user:'Granja El Porvenir',text:'Transformó nuestra eficiencia en un 30%.'}],stats:{students:1200,rating:4.9,experience:'20+ años'}},
-    {id:'p2',name:'Dr. Marco Silva',specialty:'Experto en Bioseguridad Porcina',bio:'Consultor internacional en control de enfermedades transfronterizas. Especialista en diseño de granjas de alta seguridad biológica.',image:'https://picsum.photos/seed/p2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mar 09:00–12:00','Jue 15:00–19:00'],testimonials:[{user:'AgroPork Global',text:'Su protocolo de bioseguridad salvó nuestro hato de un brote de PRRS.'}],stats:{students:850,rating:5.0,experience:'15+ años'}},
-    {id:'p3',name:'Dra. Ana Lopez',specialty:'Especialista en Farrowing',bio:'Dedicada a la optimización de la supervivencia neonatal y manejo de la cerda hiperprolífica. Autora de protocolos de maternidad de élite.',image:'https://picsum.photos/seed/p3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Vie 08:00–13:00'],testimonials:[{user:'Genética Porcina',text:'Logramos reducir la mortalidad en maternidad al 6% bajo su guía.'}],stats:{students:950,rating:4.8,experience:'12+ años'}}
-  ],
-  Bovine:[
-    {id:'b1',name:'Ing. Carlos Mendez',specialty:'Experto en Nutrición Bovina',bio:'Especialista en formulación de dietas de precisión para hatos lecheros de alta producción. Consultor en optimización de forrajes.',image:'https://picsum.photos/seed/b1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Lun 08:00–12:00','Jue 14:00–18:00'],testimonials:[{user:'Lechería Los Alpes',text:'Redujo costos de alimentación manteniendo la producción máxima.'}],stats:{students:1500,rating:5.0,experience:'18+ años'}},
-    {id:'b2',name:'Dr. Juan Perez',specialty:'Especialista en Reproducción e IA',bio:'Experto en protocolos de IATF y biotecnologías reproductivas. PhD en Ciencias Veterinarias con enfoque en fertilidad bovina.',image:'https://picsum.photos/seed/b2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mar 10:00–14:00','Vie 15:00–18:00'],testimonials:[{user:'Ganadería El Triunfo',text:'Nuestra tasa de preñez subió del 45% al 62% con sus protocolos.'}],stats:{students:1100,rating:4.9,experience:'15+ años'}},
-    {id:'b3',name:'Ing. Maria Garcia',specialty:'Genetista Bovina',bio:'Especialista en selección genómica y apareamientos planificados. Consultora para asociaciones de razas puras en Latinoamérica.',image:'https://picsum.photos/seed/b3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mie 09:00–13:00'],testimonials:[{user:'Asociación Holstein',text:'Su visión genómica ha acelerado nuestro progreso genético décadas.'}],stats:{students:780,rating:4.9,experience:'10+ años'}}
-  ],
-  Canine:[
-    {id:'c1',name:'Dra. Sarah Jenkins',specialty:'Etóloga Canina Clínica',bio:'Especialista en modificación de conducta y ansiedad por separación. PhD en Comportamiento Animal por la Universidad de Lincoln.',image:'https://picsum.photos/seed/c1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Lun 15:00–19:00','Jue 09:00–13:00'],testimonials:[{user:'Rescate Canino',text:'Logró rehabilitar casos de reactividad que dábamos por perdidos.'}],stats:{students:2500,rating:5.0,experience:'15+ años'}},
-    {id:'c2',name:'Dr. Tom Wilson',specialty:'Experto en Adiestramiento Positivo',bio:'Certificado por la KPA y CPDT-KA. Especialista en obediencia avanzada y perros de servicio mediante refuerzo positivo.',image:'https://picsum.photos/seed/c2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mar 08:00–12:00','Vie 14:00–18:00'],testimonials:[{user:'Escuela de Guías',text:'Su metodología de shaping es la más clara y efectiva que he visto.'}],stats:{students:3200,rating:4.9,experience:'20+ años'}},
-    {id:'c3',name:'Dra. Lisa Ray',specialty:'Especialista en Reactividad',bio:'Dedicada al estudio de la reactividad por miedo y frustración. Creadora de protocolos de manejo ambiental y desensibilización.',image:'https://picsum.photos/seed/c3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mie 10:00–15:00'],testimonials:[{user:'Dueño de Reactivo',text:'Ahora puedo pasear a mi perro sin miedo gracias a sus técnicas.'}],stats:{students:1800,rating:4.8,experience:'12+ años'}}
-  ],
-  Equine:[
-    {id:'e1',name:'Dra. Elena Vazquez',specialty:'Etóloga y Domadora Clásica',bio:'Especialista en la pirámide del adiestramiento y etología equina. Autora de "La Conexión Invisible".',image:'https://picsum.photos/seed/e1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Lun 09:00–13:00','Jue 15:00–19:00'],testimonials:[{user:'Hípica Real',text:'Su enfoque en la ligereza cambió totalmente mi forma de montar.'}],stats:{students:2100,rating:5.0,experience:'22+ años'}},
-    {id:'e2',name:'Dr. Ricardo Maza',specialty:'Veterinario Especialista en Cólicos',bio:'Experto en medicina interna equina y cuidados críticos. Consultor en prevención nutricional de trastornos digestivos.',image:'https://picsum.photos/seed/e2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mar 10:00–14:00','Vie 08:00–12:00'],testimonials:[{user:'Centro Ecuestre',text:'Su guía de primeros auxilios debería estar en cada caballeriza.'}],stats:{students:1400,rating:4.9,experience:'18+ años'}},
-    {id:'e3',name:'Dra. Sofia Luna',specialty:'Especialista en Reproducción Equina',bio:'Experta en IA, transferencia de embriones y cuidados del potro neonato. PhD en Biotecnología Reproductiva.',image:'https://picsum.photos/seed/e3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mie 14:00–18:00'],testimonials:[{user:'Yeguada del Sol',text:'Logramos una tasa de concepción récord bajo su supervisión.'}],stats:{students:900,rating:4.9,experience:'14+ años'}}
-  ],
-  Aquaculture:[
-    {id:'a1',name:'Dr. Luis Arenas',specialty:'Experto en Acuicultura Casera',bio:'Especialista en sistemas de recirculación (RAS) a pequeña escala y producción familiar de tilapia.',image:'https://picsum.photos/seed/a1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Lun 10:00–14:00','Mie 15:00–18:00'],testimonials:[{user:'Familia Gomez',text:'Nuestra granja casera de tilapia es un éxito gracias a sus consejos.'}],stats:{students:1300,rating:4.8,experience:'15+ años'}},
-    {id:'a2',name:'Ing. Silvia Mar',specialty:'Especialista en Camarón',bio:'Consultora en cultivo de camarón en sistemas controlados. Experta en manejo de postlarvas y calidad de agua.',image:'https://picsum.photos/seed/a2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mar 09:00–13:00','Jue 14:00–18:00'],testimonials:[{user:'Acuícola del Norte',text:'Su manejo de la salinidad en sistemas cerrados es impecable.'}],stats:{students:950,rating:4.9,experience:'12+ años'}},
-    {id:'a3',name:'Dr. Jorge Rio',specialty:'Experto en Acuaponía',bio:'Pionero en la integración de peces y hortalizas en sistemas urbanos. PhD en Ingeniería Hidráulica.',image:'https://picsum.photos/seed/a3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Vie 10:00–15:00'],testimonials:[{user:'Huerto Urbano',text:'Logramos un ciclo perfecto de nitrógeno con su diseño.'}],stats:{students:1100,rating:5.0,experience:'10+ años'}}
-  ],
-  Avian:[
-    {id:'v1',name:'Ing. Roberto Pluma',specialty:'Experto en Producción Aviar',bio:'Especialista en manejo de aves de corral de traspatio y pequeña escala. Consultor en nutrición y postura.',image:'https://picsum.photos/seed/v1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Lun 08:00–12:00','Jue 15:00–19:00'],testimonials:[{user:'Granja La Puesta',text:'Nuestra producción de huevos se estabilizó en el 90% con su guía.'}],stats:{students:2200,rating:4.9,experience:'25+ años'}},
-    {id:'v2',name:'Dra. Clara Alas',specialty:'Veterinaria Aviar Preventiva',bio:'Especialista en bioseguridad y control de enfermedades virales en aves. Experta en programas de vacunación.',image:'https://picsum.photos/seed/v2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mar 10:00–14:00','Vie 09:00–13:00'],testimonials:[{user:'Avícola del Sur',text:'Su protocolo contra Newcastle es la base de nuestra sanidad.'}],stats:{students:1600,rating:5.0,experience:'18+ años'}},
-    {id:'v3',name:'Dr. Samuel Pico',specialty:'Experto en Bienestar Aviar',bio:'Dedicado al estudio del comportamiento y enriquecimiento ambiental en sistemas de producción ética.',image:'https://picsum.photos/seed/v3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',availability:['Mie 11:00–16:00'],testimonials:[{user:'Huevos Orgánicos',text:'Sus técnicas de enriquecimiento eliminaron el picaje en nuestro hato.'}],stats:{students:1200,rating:4.8,experience:'15+ años'}}
-  ]
+  Porcine:{
+    emoji:'🐷', label:'Porcina',
+    path:['Producción Sustentable','Bioseguridad','Farrowing'],
+    list:[
+      {id:'p1',name:'Dr. Elena Rodriguez',specialty:'Bienestar Porcino',bio:'PhD en Medicina Veterinaria por la Universidad de Utrecht. Experta en sistemas de producción sustentable y etología porcina aplicada. Contribuye guías de campo libres a la comunidad Animal Master.',image:'https://picsum.photos/seed/p1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Etología','Producción Sustentable','Bienestar Animal','Nutrición'],availability:['Lun 10:00–14:00','Mie 15:00–18:00'],testimonials:[{user:'Granja El Porvenir',text:'Con sus guías gratuitas logramos reducir mortalidad un 30% en sólo un ciclo.'},{user:'Red Porcina MX',text:'Sus protocolos de bienestar deberían ser estándar en toda granja del país.'}],stats:{students:1200,rating:4.9,experience:'20+ años'}},
+      {id:'p2',name:'Dr. Marco Silva',specialty:'Bioseguridad Porcina',bio:'Consultor internacional en control de enfermedades transfronterizas. Especialista en diseño de granjas de alta seguridad biológica. Colabora con comunidades rurales compartiendo protocolos sin costo.',image:'https://picsum.photos/seed/p2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Bioseguridad','PRRS','Zonificación','Vacunación'],availability:['Mar 09:00–12:00','Jue 15:00–19:00'],testimonials:[{user:'AgroPork Global',text:'Su protocolo de bioseguridad salvó nuestro hato de un brote de PRRS.'}],stats:{students:850,rating:5.0,experience:'15+ años'}},
+      {id:'p3',name:'Dra. Ana Lopez',specialty:'Maternidad y Farrowing',bio:'Dedicada a la optimización de la supervivencia neonatal y manejo de la cerda hiperprolífica. Creó los protocolos de maternidad más descargados de la plataforma.',image:'https://picsum.photos/seed/p3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Farrowing','Neonatos','Lactancia','Hiperprolificidad'],availability:['Vie 08:00–13:00'],testimonials:[{user:'Genética Porcina SA',text:'Logramos reducir la mortalidad en maternidad al 6% aplicando sus guías.'},{user:'Productor Familiar',text:'Por primera vez entendí el manejo de la cerda lactante gracias a su material.'}],stats:{students:950,rating:4.8,experience:'12+ años'}}
+    ]
+  },
+  Bovine:{
+    emoji:'🐄', label:'Bovina',
+    path:['Manejo y Bienestar','Nutrición Ruminal','Reproducción','Genómica'],
+    list:[
+      {id:'b1',name:'Ing. Carlos Mendez',specialty:'Nutrición Bovina de Precisión',bio:'Especialista en formulación de dietas (NRC/CNCPS) para hatos lecheros de alta producción. Comparte herramientas de formulación y tablas nutricionales abiertas a la comunidad.',image:'https://picsum.photos/seed/b1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['NRC/CNCPS','Forrajes','TMR','Eficiencia Alimenticia'],availability:['Lun 08:00–12:00','Jue 14:00–18:00'],testimonials:[{user:'Lechería Los Alpes',text:'Con sus tablas gratuitas redujimos costos manteniendo la producción máxima.'}],stats:{students:1500,rating:5.0,experience:'18+ años'}},
+      {id:'b2',name:'Dr. Juan Perez',specialty:'Reproducción e Inseminación Artificial',bio:'Experto en protocolos IATF y biotecnologías reproductivas. PhD en Ciencias Veterinarias. Publica protocolos Ovsynch y CIDR de acceso libre para productores.',image:'https://picsum.photos/seed/b2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['IATF','Ovsynch','Ecografía','Sincronización'],availability:['Mar 10:00–14:00','Vie 15:00–18:00'],testimonials:[{user:'Ganadería El Triunfo',text:'Nuestra tasa de preñez subió del 45% al 62% usando sus protocolos gratuitos.'}],stats:{students:1100,rating:4.9,experience:'15+ años'}},
+      {id:'b3',name:'Ing. Maria Garcia',specialty:'Genómica y Mejoramiento',bio:'Especialista en selección genómica y apareamientos planificados. Consultora para asociaciones de razas puras. Comparte guías de lectura de EPDs y genómica para pequeños productores.',image:'https://picsum.photos/seed/b3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['EPDs','Genómica','Índices Económicos','Razas Puras'],availability:['Mie 09:00–13:00'],testimonials:[{user:'Asociación Holstein',text:'Gracias a sus guías abiertas, productores pequeños ya leen y aplican EPDs.'}],stats:{students:780,rating:4.9,experience:'10+ años'}}
+    ]
+  },
+  Canine:{
+    emoji:'🐕', label:'Canina',
+    path:['Lenguaje Corporal','Refuerzo Positivo','Comandos Básicos','Conducta Avanzada'],
+    list:[
+      {id:'c1',name:'Dra. Sarah Jenkins',specialty:'Etología Clínica Canina',bio:'PhD en Comportamiento Animal (Univ. Lincoln). Especialista en ansiedad por separación y modificación de conducta. Su canal de guías gratuitas acumula más lecturas de la plataforma.',image:'https://picsum.photos/seed/c1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Ansiedad','Desensibilización','Señales de Calma','PTSD Animal'],availability:['Lun 15:00–19:00','Jue 09:00–13:00'],testimonials:[{user:'Red de Rescatistas',text:'Rehabilitó 3 perros reactivos usando solo su guía gratuita de LAT.'},{user:'Dueño novato',text:'Por fin entendí el lenguaje de mi perra. Material increíble y 100% gratis.'}],stats:{students:2500,rating:5.0,experience:'15+ años'}},
+      {id:'c2',name:'Dr. Tom Wilson',specialty:'Adiestramiento con Refuerzo Positivo',bio:'Certificado KPA y CPDT-KA. Especialista en obediencia avanzada y perros de servicio. Sus guías de shaping están entre los recursos más compartidos de la comunidad.',image:'https://picsum.photos/seed/c2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Shaping','Clicker','Obediencia','Perros Servicio'],availability:['Mar 08:00–12:00','Vie 14:00–18:00'],testimonials:[{user:'Escuela de Guías',text:'La metodología de Tom es la más clara en la comunidad. Y es gratis.'}],stats:{students:3200,rating:4.9,experience:'20+ años'}},
+      {id:'c3',name:'Dra. Lisa Ray',specialty:'Reactividad y Miedo',bio:'Pionera en protocolos de manejo ambiental y desensibilización sistemática. Creadora del "Protocolo Verde" para perros reactivos, descargable gratuitamente en Animal Master.',image:'https://picsum.photos/seed/c3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Reactividad','Umbral','BAT','Manejo Ambiental'],availability:['Mie 10:00–15:00'],testimonials:[{user:'Dueño de Reactivo',text:'El Protocolo Verde cambió mi vida. No puedo creer que sea gratis.'}],stats:{students:1800,rating:4.8,experience:'12+ años'}}
+    ]
+  },
+  Equine:{
+    emoji:'🐴', label:'Equina',
+    path:['Etología Equina','Nutrición','Primeros Auxilios','Doma Clásica','Reproducción'],
+    list:[
+      {id:'e1',name:'Dra. Elena Vazquez',specialty:'Etología y Doma Clásica',bio:'Especialista en la pirámide del adiestramiento y etología equina. Autora de "La Conexión Invisible". Publica todos sus módulos de doma clásica de forma abierta.',image:'https://picsum.photos/seed/e1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Doma Clásica','Pirámide FEI','Ligereza','Comunicación'],availability:['Lun 09:00–13:00','Jue 15:00–19:00'],testimonials:[{user:'Hípica Real',text:'Su guía de pirámide del adiestramiento es lo mejor que he leído. Gratis.'}],stats:{students:2100,rating:5.0,experience:'22+ años'}},
+      {id:'e2',name:'Dr. Ricardo Maza',specialty:'Medicina Interna y Cólicos',bio:'Experto en medicina interna equina y cuidados críticos. Su guía de primeros auxilios ante cólicos es el recurso más descargado de la Escuela Equina.',image:'https://picsum.photos/seed/e2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Cólicos','Primeros Auxilios','Nutrición Digestiva','Emergencias'],availability:['Mar 10:00–14:00','Vie 08:00–12:00'],testimonials:[{user:'Centro Ecuestre',text:'Seguimos su guía de cólicos al pie de la letra. Salvó a un caballo.'}],stats:{students:1400,rating:4.9,experience:'18+ años'}},
+      {id:'e3',name:'Dra. Sofia Luna',specialty:'Reproducción Equina',bio:'PhD en Biotecnología Reproductiva. Experta en IA, transferencia de embriones y cuidados del potro neonato. Comparte protocolos reproductivos abiertos para yeguadas familiares.',image:'https://picsum.photos/seed/e3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['IA Equina','TE','Neonato Equino','Ciclo Estral'],availability:['Mie 14:00–18:00'],testimonials:[{user:'Yeguada del Sol',text:'Logramos tasa de concepción récord siguiendo sus protocolos libres.'}],stats:{students:900,rating:4.9,experience:'14+ años'}}
+    ]
+  },
+  Aquaculture:{
+    emoji:'🐟', label:'Acuicultura',
+    path:['Sistemas Caseros','Calidad del Agua','Tilapia','Camarón','Acuaponía'],
+    list:[
+      {id:'a1',name:'Dr. Luis Arenas',specialty:'Acuicultura a Pequeña Escala',bio:'Especialista en RAS (sistemas de recirculación) a pequeña escala. Creó las guías de tilapia casera más consultadas, pensadas para familias productoras sin capital inicial.',image:'https://picsum.photos/seed/a1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['RAS','Tilapia','Biofiltros','Economía Familiar'],availability:['Lun 10:00–14:00','Mie 15:00–18:00'],testimonials:[{user:'Familia Gomez',text:'Montamos nuestra granja de tilapia con $150. La guía fue gratis.'}],stats:{students:1300,rating:4.8,experience:'15+ años'}},
+      {id:'a2',name:'Ing. Silvia Mar',specialty:'Cultivo de Camarón',bio:'Consultora en cultivo de camarón en sistemas controlados. Experta en manejo de postlarvas y calidad de agua. Su calculadora de salinidad es un recurso libre en la plataforma.',image:'https://picsum.photos/seed/a2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Camarón','Salinidad','Postlarvas','Biofloc'],availability:['Mar 09:00–13:00','Jue 14:00–18:00'],testimonials:[{user:'Acuícola del Norte',text:'La calculadora libre de Silvia es indispensable en nuestra operación.'}],stats:{students:950,rating:4.9,experience:'12+ años'}},
+      {id:'a3',name:'Dr. Jorge Rio',specialty:'Acuaponía Urbana',bio:'Pionero en integración peces-hortalizas en entornos urbanos. PhD en Ingeniería Hidráulica. Su manual de acuaponía doméstica es gratuito y descargable en 3 idiomas.',image:'https://picsum.photos/seed/a3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Acuaponía','Nitrógeno','Horticultura','Urbano'],availability:['Vie 10:00–15:00'],testimonials:[{user:'Huerto Urbano CDMX',text:'El manual de Jorge nos permitió tener peces y vegetales en un depto.'}],stats:{students:1100,rating:5.0,experience:'10+ años'}}
+    ]
+  },
+  Avian:{
+    emoji:'🦜', label:'Aviar',
+    path:['Infraestructura','Nutrición y Postura','Bioseguridad Aviar','Bienestar'],
+    list:[
+      {id:'v1',name:'Ing. Roberto Pluma',specialty:'Producción Aviar de Traspatio',bio:'25 años de experiencia en manejo de aves de corral a pequeña escala. Sus checklists de infraestructura y nutrición son los recursos más impresos y usados en campo.',image:'https://picsum.photos/seed/v1/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Gallinas Ponedoras','Fotoperiodo','Nutrición','Traspatio'],availability:['Lun 08:00–12:00','Jue 15:00–19:00'],testimonials:[{user:'Granja La Puesta',text:'Con su checklist gratuito logramos 90% de postura constante.'}],stats:{students:2200,rating:4.9,experience:'25+ años'}},
+      {id:'v2',name:'Dra. Clara Alas',specialty:'Salud Aviar Preventiva',bio:'Especialista en bioseguridad y control de enfermedades virales. Sus protocolos de vacunación contra Newcastle e Influenza Aviar son estándar de referencia en comunidades rurales.',image:'https://picsum.photos/seed/v2/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Newcastle','Influenza Aviar','Vacunación','Bioseguridad'],availability:['Mar 10:00–14:00','Vie 09:00–13:00'],testimonials:[{user:'Avícola del Sur',text:'Su protocolo anti-Newcastle es ahora el estándar de todo nuestro municipio.'}],stats:{students:1600,rating:5.0,experience:'18+ años'}},
+      {id:'v3',name:'Dr. Samuel Pico',specialty:'Bienestar y Etología Aviar',bio:'Investigador en enriquecimiento ambiental y sistemas de producción ética. Su "Protocolo Cero Picaje" se descargó más de 5,000 veces de forma gratuita.',image:'https://picsum.photos/seed/v3/400/400',videoUrl:'https://www.w3schools.com/html/mov_bbb.mp4',skills:['Enriquecimiento','Etología','Bienestar','Picaje'],availability:['Mie 11:00–16:00'],testimonials:[{user:'Huevos Orgánicos SC',text:'El Protocolo Cero Picaje de Samuel transformó nuestro manejo.'}],stats:{students:1200,rating:4.8,experience:'15+ años'}}
+    ]
+  }
 };
 
 const QUIZZES = [
@@ -723,10 +757,10 @@ let quizAnswered = false;
 
 // Chat history for main chat
 let mainChatHistory = [
-  {role:'model', parts:[{text:'Bienvenido al Centro de Consultoría de Animal Master. Soy su asistente ejecutivo de IA. ¿En qué área técnica o estratégica de la gestión animal puedo asistirle hoy?'}]}
+  {role:'model', parts:[{text:'👋 Hola, soy VetMaster IA, tu asistente de triage veterinario. Selecciona la especie arriba y describe los síntomas de tu animal — edad, síntomas principales y hace cuánto tiempo los presenta — para recibir una evaluación de urgencia.\n\n⚠️ Orientación preliminar. No sustituye diagnóstico veterinario.'}]}
 ];
 let floatChatHistory = [
-  {role:'model', parts:[{text:'Hola, soy tu asistente ejecutivo de IA. ¿En qué área técnica o estratégica puedo asistirle hoy?'}]}
+  {role:'model', parts:[{text:'🐾 Hola, soy VetMaster IA. Describe los síntomas de tu animal — especie, edad y qué observas — y te doy una evaluación rápida de urgencia.'}]}
 ];
 
 // =================== NAVBAR ===================
@@ -810,7 +844,7 @@ function buildMentorCatTabs() {
   const cats = Object.keys(MENTORS);
   const el = document.getElementById('mentor-cat-tabs');
   el.innerHTML = cats.map(c => `
-    <button class="filter-btn ${c===currentMentorCat?'active':''}" onclick="setMentorCat('${c}',this)">${c}</button>
+    <button class="filter-btn ${c===currentMentorCat?'active':''}" onclick="setMentorCat('${c}',this)">${MENTORS[c].emoji} ${MENTORS[c].label}</button>
   `).join('');
 }
 
@@ -824,16 +858,27 @@ function setMentorCat(cat, btn) {
 }
 
 function renderMentors() {
-  const list = MENTORS[currentMentorCat];
-  const listEl = document.getElementById('mentor-list');
-  listEl.innerHTML = list.map((m, i) => `
-    <button class="mentor-btn ${i===currentMentorIdx?'active':''}" onclick="setMentor(${i})">
-      <img src="${m.image}" alt="${m.name}" />
-      <div>
-        <h4>${m.name}</h4>
-        <p>${m.specialty}</p>
+  const cat = MENTORS[currentMentorCat];
+  // Render learning path
+  const lpEl = document.getElementById('learning-path');
+  lpEl.innerHTML = cat.path.map((step, i) => `
+    <div class="lp-step">
+      <div class="lp-node active">${step}</div>
+      ${i < cat.path.length - 1 ? '<span class="lp-arrow">→</span>' : ''}
+    </div>
+  `).join('');
+  // Render mentor card grid
+  const gridEl = document.getElementById('mentor-cards-grid');
+  gridEl.innerHTML = cat.list.map((m, i) => `
+    <div class="mentor-card ${i===currentMentorIdx?'active':''}" onclick="setMentor(${i})">
+      <span class="free-badge">Gratis</span>
+      <img class="mentor-card-img" src="${m.image}" alt="${m.name}" />
+      <div class="mentor-card-body">
+        <div class="mentor-card-name">${m.name}</div>
+        <div class="mentor-card-spec">${m.specialty}</div>
+        <div class="mentor-skills">${m.skills.map(s => `<span class="skill-tag">${s}</span>`).join('')}</div>
       </div>
-    </button>
+    </div>
   `).join('');
   renderMentorDetail();
 }
@@ -841,7 +886,9 @@ function renderMentors() {
 function setMentor(idx) {
   currentMentorIdx = idx;
   currentMentorTab = 'bio';
-  renderMentors();
+  document.querySelectorAll('.mentor-card').forEach((c,i) => c.classList.toggle('active', i===idx));
+  renderMentorDetail();
+  setTimeout(() => document.getElementById('mentor-detail').scrollIntoView({behavior:'smooth',block:'nearest'}), 50);
 }
 
 function setMentorTab(tab) {
@@ -853,7 +900,7 @@ function setMentorTab(tab) {
 }
 
 function renderMentorDetail() {
-  const m = MENTORS[currentMentorCat][currentMentorIdx];
+  const m = MENTORS[currentMentorCat].list[currentMentorIdx];
   const el = document.getElementById('mentor-detail');
   const stars = Array(5).fill('<span class="star">★</span>').join('');
   const slots = m.availability.map(s => `
@@ -869,6 +916,7 @@ function renderMentorDetail() {
     </div>
   `).join('');
 
+  el.classList.add('open');
   el.innerHTML = `
     <div class="mentor-detail">
       <div class="mentor-stats">
@@ -888,7 +936,7 @@ function renderMentorDetail() {
             <div class="stat-label">Maestría</div>
           </div>
         </div>
-        <button class="btn-luxury" onclick="alert('Iniciando proceso de reserva con ${m.name}. Un asesor ejecutivo se pondrá en contacto con usted.')">Agendar Sesión</button>
+        <button class="btn-luxury" onclick="alert('Conectando con ${m.name}. La agenda comunitaria gratuita estará disponible próximamente.')">Conectar Gratis</button>
       </div>
       <div class="mentor-tabs-nav">
         <button class="mtab ${currentMentorTab==='bio'?'active':''}" data-tab="bio" onclick="setMentorTab('bio')">👤 Perfil</button>
@@ -913,7 +961,7 @@ function renderMentorDetail() {
         </div>
         <div class="mc-panel ${currentMentorTab==='calendar'?'active':''}" id="mc-calendar">
           <div class="calendar-grid">${slots}</div>
-          <p class="cal-note">* Sesiones sujetas a validación de perfil ejecutivo.</p>
+          <p class="cal-note">* Sesiones comunitarias gratuitas — sin registro previo requerido.</p>
         </div>
       </div>
     </div>
@@ -1036,15 +1084,49 @@ function animateEcoBar() {
 }
 
 // =================== AI CHAT ===================
-const SYSTEM_PROMPT = `You are the Animal Master Orchestrator, the most intelligent AI assistant and the central brain of the Animal Master Academy.
-Your knowledge base includes the complete curriculum of our six specialized schools:
-1. Escuela Acuícola Casera (Tilapia and Shrimp)
-2. Escuela Porcina (Sustainable Production, Biosecurity, Farrowing)
-3. Escuela Aviar (Basic Rearing, Preventive Health)
-4. Escuela Canina (Behavior, Positive Reinforcement, Reactivity)
-5. Escuela Equina (Body Language, Nutrition, First Aid, Dressage, Reproduction)
-6. Escuela Bovina (Management, Nutrition, Mastitis, IA, Genetics)
-Tone: Professional, elite, warm, and highly encouraging. Answer in Spanish.`;
+const SYSTEM_PROMPT = `Eres VetMaster IA, el asistente oficial de triage veterinario de Animal Master Academy.
+
+Tu misión principal es ayudar a propietarios de animales, productores y profesionales veterinarios a evaluar el estado de salud de sus animales, clasificar la urgencia y recomendar acciones de primeros auxilios apropiadas.
+
+SISTEMA DE CLASIFICACIÓN DE TRIAGE:
+🔴 URGENTE: Condiciones que requieren atención veterinaria inmediata (dentro de 1-2 horas). Ejemplos: convulsiones, trauma severo, dificultad respiratoria grave, cólico con dolor >7/10, hemorragia, pérdida de conciencia, intoxicación sospechada, parto distócico bloqueado.
+🟡 MODERADO: Condiciones que necesitan evaluación veterinaria en 24-48 horas. Ejemplos: cojera leve, vómitos/diarrea leve (1-2 episodios), heridas menores sin hemorragia activa, anorexia de 24h, fiebre leve (≤40°C), mastitis subclínica.
+🟢 RUTINA: Condiciones manejables con cuidado en casa y consulta programada. Ejemplos: condiciones dérmicas leves, cambios conductuales menores, preguntas preventivas, revisión de desparasitación.
+
+Para cada consulta DEBES:
+1. Confirmar la especie y edad del animal
+2. Listar los síntomas principales identificados
+3. Asignar clasificación de triage (🔴 URGENTE / 🟡 MODERADO / 🟢 RUTINA) en formato destacado
+4. Dar recomendaciones inmediatas de primeros auxilios paso a paso
+5. Indicar señales de alarma específicas para vigilar
+6. Recomendar si se necesita contacto veterinario de emergencia o rutina
+
+ÁMBITO DE PRÁCTICA:
+- Proporcionas orientación preliminar, NO un diagnóstico formal
+- Las recomendaciones de tratamiento son orientación general
+- SIEMPRE recomienda consultar a un médico veterinario certificado para diagnóstico definitivo y prescripción
+- En casos URGENTES, prioriza siempre la consulta profesional inmediata
+
+Tu conocimiento cubre:
+- Bovinos: medicina interna, nutrición, reproducción, mastitis, enfermedades metabólicas, cólicos
+- Porcinos: bioseguridad, cuidados neonatales, enfermedades respiratorias, problemas reproductivos, farrowing
+- Équidos: cólicos, cojeras, heridas, reproducción, laminitis, condiciones metabólicas
+- Caninos: comportamiento, medicina interna, trauma, toxicología, dermatología, urgencias
+- Aves de corral: enfermedades infecciosas, nutrición, bioseguridad, producción, Newcastle, Influenza Aviar
+- Acuicultura: calidad del agua, enfermedades infecciosas, nutrición, parámetros críticos
+
+AVISO LEGAL OBLIGATORIO al inicio de cada respuesta de triage:
+"⚠️ Orientación preliminar de triage. No sustituye el diagnóstico de un médico veterinario certificado. Ante cualquier duda, consulte a su veterinario."
+
+Tono: Claro, profesional, empático y orientado a la acción. Responde siempre en español. Usa formato estructurado con encabezados de clasificación de triage. Sé directo y específico — en una emergencia, la claridad salva vidas.`;
+
+let selectedSpecies = '';
+function setSpecies(s) {
+  selectedSpecies = s;
+  document.querySelectorAll('.species-btn').forEach(b => b.classList.toggle('active', b.textContent.trim()===s));
+  document.getElementById('main-chat-input').placeholder = `Describe los síntomas de tu ${s.split(' ')[1] || 'animal'}...`;
+  document.getElementById('main-chat-input').focus();
+}
 
 async function callGemini(message, history) {
   const apiKey = window.GEMINI_API_KEY || '';
@@ -1091,11 +1173,12 @@ function appendTyping(containerId) {
 async function sendMainChat() {
   const input = document.getElementById('main-chat-input');
   const send = document.getElementById('main-chat-send');
-  const msg = input.value.trim();
-  if (!msg) return;
+  const rawMsg = input.value.trim();
+  if (!rawMsg) return;
+  const msg = selectedSpecies ? `[Especie: ${selectedSpecies}] ${rawMsg}` : rawMsg;
   input.value = '';
   send.disabled = true;
-  appendMsg('main-chat-msgs', 'user', msg);
+  appendMsg('main-chat-msgs', 'user', rawMsg);
   mainChatHistory.push({role:'user',parts:[{text:msg}]});
   const typing = appendTyping('main-chat-msgs');
   try {
