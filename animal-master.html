@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Animal Master Academy</title>
+<title>Animal Master — Plataforma Pública Agropecuaria</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 <style>
@@ -403,19 +403,28 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
   </div>
   <div class="hero-inner">
     <div>
-      <span class="sec-label">Conocimiento Abierto · Completamente Gratis</span>
-      <h1 class="hero-title">Animal <br/><em>Mastery</em></h1>
-      <p class="hero-desc">La plataforma comunitaria de referencia para el cuidado y producción animal. Guías técnicas, mentores expertos y certificaciones — sin costo, para todos.</p>
+      <span class="sec-label">Plataforma Pública · Ganaderos · Veterinarios · Productores · Gobierno</span>
+      <h1 class="hero-title">Animal <br/><em>Master</em></h1>
+      <p class="hero-desc">La plataforma pública de referencia para ganaderos, veterinarios y productores agropecuarios. Triage veterinario con IA, tablas de nutrición, guías de campo y certificaciones — sin costo, para todos.</p>
       <div class="hero-btns">
-        <a href="#academy" class="btn-luxury">Explorar Conocimiento →</a>
-        <a href="#mentors" class="btn-outline">Conocer Mentores</a>
+        <a href="#ai-assistance" class="btn-luxury">Consultar VetMaster IA →</a>
+        <a href="#academy" class="btn-outline">Ver Guías Técnicas</a>
       </div>
       <div style="margin-top:48px;display:flex;gap:40px;flex-wrap:wrap">
         <div><span style="font-size:28px;font-weight:300;color:var(--gold)">18+</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Mentores Expertos</span></div>
         <div style="width:1px;background:rgba(197,160,89,.15)"></div>
-        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">6</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Escuelas Especializadas</span></div>
+        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">6</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Especies Atendidas</span></div>
         <div style="width:1px;background:rgba(197,160,89,.15)"></div>
-        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">100%</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Acceso Libre</span></div>
+        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">IA</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Triage 24/7</span></div>
+        <div style="width:1px;background:rgba(197,160,89,.15)"></div>
+        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">$0</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Costo para el productor</span></div>
+      </div>
+      <!-- Badges institucionales -->
+      <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:12px">
+        <span style="padding:6px 16px;border:1px solid rgba(197,160,89,.2);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.6)">🏛 Uso Gubernamental</span>
+        <span style="padding:6px 16px;border:1px solid rgba(197,160,89,.2);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.6)">🌾 Sector Agropecuario</span>
+        <span style="padding:6px 16px;border:1px solid rgba(197,160,89,.2);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.6)">⚕ Médicos Veterinarios</span>
+        <span style="padding:6px 16px;border:1px solid rgba(197,160,89,.2);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.6)">👨‍🌾 Pequeños Productores</span>
       </div>
     </div>
     <div class="hero-img-wrap">
@@ -741,8 +750,19 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
       </div>
       <div class="chat-panel" style="height:760px">
         <div class="chat-header">
-          <div class="chat-status"><div class="pulse-dot"></div>VetMaster IA · Triage Activo</div>
-          <div class="chat-dots"><span></span><span></span><span></span></div>
+          <div class="chat-status"><div class="pulse-dot" id="chat-pulse"></div><span id="chat-status-text">VetMaster IA · Triage Activo</span></div>
+          <button onclick="toggleApiPanel()" id="api-config-btn" style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.5);border:1px solid rgba(197,160,89,.2);padding:6px 14px;cursor:pointer;transition:all .2s;background:transparent" title="Configurar clave API gratuita">⚙ API Key</button>
+        </div>
+        <!-- Panel configuración API key -->
+        <div id="api-config-panel" style="display:none;padding:20px 24px;background:rgba(5,5,5,.9);border-bottom:2px solid rgba(197,160,89,.3)">
+          <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:var(--gold);margin-bottom:12px">🔑 Clave API de Gemini (gratuita)</p>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px">La IA usa Google Gemini — gratuito hasta 1,500 consultas/día. <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--gold);text-decoration:underline">Obtén tu clave gratis aquí →</a></p>
+          <div style="display:flex;gap:8px">
+            <input id="api-key-input" type="password" placeholder="Pega tu clave: AIza..." style="flex:1;padding:10px 14px;background:rgba(15,15,15,.8);border:1px solid rgba(197,160,89,.3);font-size:13px;color:var(--text);outline:none;font-family:'Inter',sans-serif" />
+            <button onclick="saveApiKey()" style="padding:10px 20px;background:var(--gold);color:var(--dark);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;cursor:pointer;border:none;white-space:nowrap">Guardar</button>
+            <button onclick="clearApiKey()" style="padding:10px 14px;border:1px solid rgba(197,160,89,.2);color:var(--muted);font-size:11px;cursor:pointer;background:transparent">✕</button>
+          </div>
+          <div id="api-key-status" style="margin-top:10px;font-size:11px"></div>
         </div>
         <!-- Species quick-select -->
         <div style="padding:16px 24px;border-bottom:1px solid rgba(197,160,89,.08);background:rgba(15,15,15,.6)">
@@ -779,29 +799,36 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
           <div class="nav-logo-box"><span>A</span></div>
           <span class="nav-logo-text">Animal<span class="gold">Master</span></span>
         </div>
-        <p class="footer-desc">La plataforma comunitaria de referencia para el cuidado y producción animal. Conocimiento técnico de alto nivel, libre y gratuito para todos.</p>
+        <p class="footer-desc">Plataforma pública de conocimiento agropecuario para ganaderos, veterinarios, productores e instituciones gubernamentales. Tecnología de IA al servicio del campo — sin costo, para todos.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px">
+          <span style="padding:4px 12px;border:1px solid rgba(197,160,89,.15);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.5)">Uso Gubernamental</span>
+          <span style="padding:4px 12px;border:1px solid rgba(197,160,89,.15);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.5)">Sector Agropecuario</span>
+          <span style="padding:4px 12px;border:1px solid rgba(197,160,89,.15);font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.5)">Acceso Libre</span>
+        </div>
       </div>
       <div class="footer-col">
-        <h4>Navegación</h4>
+        <h4>Plataforma</h4>
         <ul>
-          <li><a href="#academy">Academia</a></li>
+          <li><a href="#academy">Guías Técnicas</a></li>
           <li><a href="#mentors">Mentores</a></li>
+          <li><a href="#nutricion">Nutrición y Raciones</a></li>
+          <li><a href="#ai-assistance">VetMaster IA</a></li>
           <li><a href="#quizzes">Certificaciones</a></li>
-          <li><a href="#ai-assistance">Consultoría IA</a></li>
-          <li><a href="#community">Comunidad</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contacto</h4>
+        <h4>Para instituciones</h4>
         <ul>
-          <li>info@animalmaster.academy</li>
-          <li>+1 (555) 000-LUXO</li>
-          <li>Sede Central: Ginebra, Suiza</li>
+          <li style="color:var(--muted);font-size:13px">Secretarías de Agricultura</li>
+          <li style="color:var(--muted);font-size:13px">Municipios y Presidencias</li>
+          <li style="color:var(--muted);font-size:13px">Escuelas Veterinarias</li>
+          <li style="color:var(--muted);font-size:13px">Asociaciones Ganaderas</li>
+          <li><a href="mailto:info@animalmaster.academy">info@animalmaster.academy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2024 Animal Master Academy. Todos los derechos reservados.</p>
+      <p class="footer-copy">© 2025 Animal Master — Plataforma Pública Agropecuaria. Acceso libre para todos.</p>
       <div class="footer-legal">
         <a href="#">Privacidad</a>
         <a href="#">Términos</a>
@@ -825,10 +852,13 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
     <p style="font-size:9px;color:rgba(197,160,89,.5);line-height:1.5">⚠️ Orientación preliminar. Consulte siempre a su veterinario.</p>
   </div>
   <div class="float-chat-msgs" id="float-msgs">
-    <div class="float-msg model">🐾 Hola, soy VetMaster IA. Describe los síntomas de tu animal — especie, edad y qué observas — y te doy una evaluación rápida de urgencia.</div>
+    <div class="float-msg model" id="float-welcome">🐾 Hola, soy VetMaster IA. Describe los síntomas de tu animal y te doy una evaluación de urgencia. Si aún no tienes clave API, ve al chat principal y haz clic en ⚙ Activar IA.</div>
   </div>
   <div class="float-input-wrap">
     <input class="float-input" id="float-input" type="text" placeholder="Especie + síntomas de tu animal..." onkeypress="if(event.key==='Enter')sendFloat()" />
+    <div style="padding:8px 16px 0;display:flex;justify-content:flex-end">
+      <button onclick="document.getElementById('float-chat').classList.add('hidden');document.getElementById('ai-assistance').scrollIntoView({behavior:'smooth'});setTimeout(toggleApiPanel,600)" style="font-size:9px;color:rgba(197,160,89,.5);text-transform:uppercase;letter-spacing:.2em;background:none;border:none;cursor:pointer;text-decoration:underline">⚙ Configurar API</button>
+    </div>
   </div>
 </div>
 
@@ -1364,6 +1394,65 @@ AVISO LEGAL OBLIGATORIO al inicio de cada respuesta de triage:
 
 Tono: Claro, profesional, empático y orientado a la acción. Responde siempre en español. Usa formato estructurado con encabezados de clasificación de triage. Sé directo y específico — en una emergencia, la claridad salva vidas.`;
 
+// =================== API KEY MANAGEMENT ===================
+function getApiKey() {
+  return window.GEMINI_API_KEY || localStorage.getItem('vetmaster_api_key') || '';
+}
+
+function saveApiKey() {
+  const key = document.getElementById('api-key-input').value.trim();
+  if (!key) return;
+  localStorage.setItem('vetmaster_api_key', key);
+  document.getElementById('api-key-status').innerHTML = '<span style="color:#22c55e">✓ Clave guardada — VetMaster IA activado</span>';
+  updateChatStatus();
+  setTimeout(() => {
+    document.getElementById('api-config-panel').style.display = 'none';
+    // Reemplaza el mensaje inicial con uno de bienvenida activo
+    const msgs = document.getElementById('main-chat-msgs');
+    const welcome = document.createElement('div');
+    welcome.className = 'msg-row model';
+    welcome.innerHTML = '<div class="msg-bubble">✅ <strong>VetMaster IA activado.</strong> Ahora puedes consultarme sobre síntomas, nutrición, raciones y cualquier duda agropecuaria. Selecciona la especie de tu animal y describe lo que observas.</div>';
+    msgs.appendChild(welcome);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1200);
+}
+
+function clearApiKey() {
+  localStorage.removeItem('vetmaster_api_key');
+  document.getElementById('api-key-input').value = '';
+  document.getElementById('api-key-status').innerHTML = '<span style="color:rgba(239,68,68,.7)">Clave eliminada</span>';
+  updateChatStatus();
+}
+
+function toggleApiPanel() {
+  const panel = document.getElementById('api-config-panel');
+  const isOpen = panel.style.display !== 'none';
+  panel.style.display = isOpen ? 'none' : 'block';
+  if (!isOpen) {
+    const saved = localStorage.getItem('vetmaster_api_key');
+    if (saved) {
+      document.getElementById('api-key-input').value = saved;
+      document.getElementById('api-key-status').innerHTML = '<span style="color:#22c55e">✓ Clave configurada y activa</span>';
+    }
+  }
+}
+
+function updateChatStatus() {
+  const hasKey = !!getApiKey();
+  const dot = document.getElementById('chat-pulse');
+  const text = document.getElementById('chat-status-text');
+  const btn = document.getElementById('api-config-btn');
+  if (hasKey) {
+    if (dot) dot.style.background = '#22c55e';
+    if (text) text.textContent = 'VetMaster IA · Activo';
+    if (btn) { btn.style.color = 'rgba(34,197,94,.6)'; btn.style.borderColor = 'rgba(34,197,94,.2)'; btn.textContent = '✓ API Activa'; }
+  } else {
+    if (dot) dot.style.background = 'rgba(239,68,68,.7)';
+    if (text) text.textContent = 'VetMaster IA · Configura tu clave';
+    if (btn) { btn.style.color = 'var(--gold)'; btn.style.borderColor = 'rgba(197,160,89,.4)'; btn.textContent = '⚙ Activar IA'; }
+  }
+}
+
 let selectedSpecies = '';
 function setSpecies(s) {
   selectedSpecies = s;
@@ -1373,9 +1462,9 @@ function setSpecies(s) {
 }
 
 async function callGemini(message, history) {
-  const apiKey = window.GEMINI_API_KEY || '';
+  const apiKey = getApiKey();
   if (!apiKey) {
-    return 'Para activar la consultoría IA, configure su clave de API de Gemini. En este modo de demostración, le informo que nuestra IA está entrenada con los más avanzados protocolos de medicina veterinaria, zootecnia y gestión agropecuaria. Por favor contacte a info@animalmaster.academy para acceso completo.';
+    return '🔑 **Para activar VetMaster IA:** Haz clic en **"⚙ Activar IA"** en la esquina superior derecha del chat y pega tu clave gratuita de Gemini.\n\n👉 Obtén tu clave gratis en: **aistudio.google.com/apikey** (sin tarjeta de crédito — hasta 1,500 consultas diarias gratis).\n\nUna vez configurada, podrás hacer consultas de triage, nutrición animal y raciones balanceadas directamente aquí.';
   }
   const contents = [
     ...history.map(h => ({role:h.role,parts:h.parts})),
@@ -1387,9 +1476,14 @@ async function callGemini(message, history) {
     body: JSON.stringify({
       contents,
       systemInstruction:{parts:[{text:SYSTEM_PROMPT}]},
-      generationConfig:{maxOutputTokens:600}
+      generationConfig:{maxOutputTokens:800}
     })
   });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    if (res.status === 400 || res.status === 403) return '❌ Clave API inválida o sin permisos. Verifica tu clave en ⚙ Activar IA.';
+    return 'Error al conectar con el servidor de IA. Por favor intenta de nuevo.';
+  }
   const data = await res.json();
   return data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Lo siento, no pude procesar tu solicitud.';
 }
@@ -1766,6 +1860,10 @@ animateEcoBar();
 renderIngredientes();
 renderRaciones();
 calcularRacion();
+updateChatStatus();
+// Cargar clave guardada en el input al arrancar
+const _savedKey = localStorage.getItem('vetmaster_api_key');
+if (_savedKey) { const _inp = document.getElementById('api-key-input'); if(_inp) _inp.value = _savedKey; }
 </script>
 </body>
 </html>
