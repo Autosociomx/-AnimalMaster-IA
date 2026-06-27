@@ -2388,19 +2388,19 @@ const Footer = () => (
         </div>
         
         <div>
-          <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold mb-8">Contacto</h4>
+          <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-gold mb-8">Contacto Directo</h4>
           <ul className="space-y-4 text-sm text-brand-muted font-light">
             <li>info@animalmaster.academy</li>
-            <li>+1 (555) 000-LUXO</li>
-            <li>Sede Central: Ginebra, Suiza</li>
+            <li>Tel: <a href="tel:3841029017" className="hover:text-brand-gold transition-colors">+52 384 102 9017</a></li>
+            <li>Tepic, Nayarit, México</li>
           </ul>
         </div>
       </div>
       
       <div className="pt-12 border-t border-brand-gold/5 flex flex-col md:flex-row justify-between items-center gap-8">
-        <p className="text-[10px] uppercase tracking-[0.2em] text-brand-muted/40">
-          © 2024 Animal Master Academy. Todos los derechos reservados.<br/>
-          Impulsado por Google AI Studio & Conecta X.
+        <p className="text-[10px] uppercase tracking-[0.2em] text-brand-muted/40 leading-relaxed">
+          © {new Date().getFullYear()} Animal Master Academy. Texto con derechos reservados.<br/>
+          Una iniciativa impulsada por Google AI Studio & ConnectX.
         </p>
         <div className="flex gap-10 text-[10px] uppercase tracking-[0.2em] text-brand-muted/40">
           <a href="#" className="hover:text-brand-gold transition-colors">Privacidad</a>

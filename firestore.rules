@@ -137,12 +137,11 @@ service cloud.firestore {
     }
 
     match /user_notes/{userId} {
-      allow read, write: if isOwner(userId);
+      allow read, write: if request.auth != null && request.auth.uid == userId;
     }
 
     match /business_vaults/{vaultId} {
-      // Assuming vaultId is the userId as in the error path
-      allow read, write: if isOwner(vaultId);
+      allow read, write: if request.auth != null && request.auth.uid == vaultId;
     }
   }
 }
