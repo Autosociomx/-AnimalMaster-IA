@@ -376,6 +376,10 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
 .ing-level-low{color:#22c55e}
 .ing-level-med{color:var(--gold)}
 .ing-level-high{color:#ef4444}
+
+/* Quick question chips */
+.quick-q{padding:5px 12px;font-size:10px;font-weight:600;border:1px solid rgba(197,160,89,.15);color:rgba(163,163,163,.6);background:transparent;cursor:pointer;transition:all .2s;border-radius:2px}
+.quick-q:hover{border-color:var(--gold);color:var(--gold);background:rgba(197,160,89,.06)}
 </style>
 </head>
 <body>
@@ -735,14 +739,23 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
   <div class="section-inner">
     <div class="ai-grid">
       <div>
-        <span class="sec-label">Triage Veterinario · 24/7 Gratuito</span>
-        <h2 style="font-size:clamp(34px,4vw,56px);margin-bottom:32px;line-height:1.1">Veterinario <br/><em style="color:var(--gold)">Asistente IA</em></h2>
-        <p class="muted" style="font-size:16px;line-height:1.8;margin-bottom:32px">Describe los síntomas de tu animal y recibe una evaluación preliminar de urgencia, recomendaciones de primeros auxilios y orientación sobre cuándo consultar a un veterinario.</p>
+        <span class="sec-label">Consulta Gratis · Siempre Disponible · Sin Esperar</span>
+        <h2 style="font-size:clamp(34px,4vw,56px);margin-bottom:32px;line-height:1.1">Tu Veterinario <br/><em style="color:var(--gold)">de Confianza IA</em></h2>
+        <p class="muted" style="font-size:16px;line-height:1.8;margin-bottom:32px">Cuéntame qué le pasa a tu animal — ya sea una vaca, un cerdo, un caballo, tu perro o tus pollos — y te digo qué tan grave es, qué hacer ahorita mismo, y si necesitas llamar al veterinario de volada.</p>
         <div class="ai-features">
-          <div class="ai-feat"><div class="ai-feat-icon">🔴</div><span class="muted" style="font-size:14px"><strong style="color:var(--text)">Urgente</strong> — Atención inmediata (1-2 hrs)</span></div>
-          <div class="ai-feat"><div class="ai-feat-icon">🟡</div><span class="muted" style="font-size:14px"><strong style="color:var(--text)">Moderado</strong> — Consulta en 24-48 horas</span></div>
-          <div class="ai-feat"><div class="ai-feat-icon">🟢</div><span class="muted" style="font-size:14px"><strong style="color:var(--text)">Rutina</strong> — Manejo en casa + consulta programada</span></div>
-          <div class="ai-feat"><div class="ai-feat-icon">💊</div><span class="muted" style="font-size:14px">Orientación de primeros auxilios y tratamiento</span></div>
+          <div class="ai-feat"><div class="ai-feat-icon">🔴</div><span class="muted" style="font-size:14px"><strong style="color:var(--text)">¡De emergencia!</strong> — Necesita veterinario ya (1-2 hrs)</span></div>
+          <div class="ai-feat"><div class="ai-feat-icon">🟡</div><span class="muted" style="font-size:14px"><strong style="color:var(--text)">Hay que atenderlo</strong> — Consulta en 24-48 horas</span></div>
+          <div class="ai-feat"><div class="ai-feat-icon">🟢</div><span class="muted" style="font-size:14px"><strong style="color:var(--text)">Puedes manejarlo</strong> — Cuidados en casa por ahora</span></div>
+          <div class="ai-feat"><div class="ai-feat-icon">🥣</div><span class="muted" style="font-size:14px">Raciones, alimentos y conversión de ingredientes</span></div>
+          <div class="ai-feat"><div class="ai-feat-icon">💉</div><span class="muted" style="font-size:14px">Vacunas, desparasitación y calendario sanitario</span></div>
+        </div>
+        <div style="margin-top:32px;padding:20px 24px;background:rgba(197,160,89,.05);border:1px solid rgba(197,160,89,.15);border-left:3px solid var(--gold)">
+          <p style="font-size:12px;color:var(--muted);line-height:1.7"><strong style="color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.2em">Aviso Importante</strong><br/>Este asistente te da orientación y primeros auxilios. No reemplaza al veterinario para diagnóstico formal ni para recetar medicamentos. Ante una emergencia, busca atención veterinaria de inmediato.</p>
+        </div>
+        <div style="margin-top:20px;padding:16px 20px;background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.15)">
+          <p style="font-size:12px;color:rgba(34,197,94,.7);line-height:1.7">✅ <strong style="color:#22c55e">Funciona sin internet con modo experto</strong> — Responde aunque no tengas clave API. Con clave de Gemini (gratis) la respuesta es aún más detallada.</p>
+        </div>
+      </div>
         </div>
         <div style="margin-top:32px;padding:20px 24px;background:rgba(197,160,89,.05);border:1px solid rgba(197,160,89,.15);border-left:3px solid var(--gold)">
           <p style="font-size:12px;color:var(--muted);line-height:1.7"><strong style="color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.2em">Aviso Legal</strong><br/>Este asistente proporciona orientación preliminar de triage. No sustituye el diagnóstico ni la prescripción de un médico veterinario certificado. Para prescripción de medicamentos, consulte siempre a su veterinario.</p>
@@ -777,11 +790,19 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
           </div>
         </div>
         <div class="chat-messages" id="main-chat-msgs">
-          <div class="msg-row model"><div class="msg-bubble">👋 Hola, soy <strong>VetMaster IA</strong>, tu asistente de triage veterinario. Selecciona la especie arriba y describe los síntomas de tu animal — edad, síntomas principales y hace cuánto tiempo los presenta — para recibir una evaluación de urgencia. <br/><br/>⚠️ <em>Orientación preliminar. No sustituye diagnóstico veterinario.</em></div></div>
+          <div class="msg-row model"><div class="msg-bubble">🐾 ¡Hola! Soy <strong>VetMaster IA</strong>, tu asesor veterinario disponible las 24 horas.<br/><br/>Cuéntame qué le está pasando a tu animal: <strong>¿qué especie es?</strong>, <strong>¿qué síntomas presenta?</strong> y <strong>¿desde cuándo?</strong><br/><br/>Por ejemplo:<br/>• "Mi vaca lleva 8 horas sin comer, panza inflada del lado izquierdo"<br/>• "Mi cerdo de engorda tiene diarrea amarilla desde ayer"<br/>• "¿Cuánto maíz le doy a 50 novillos de 250 kilos?"<br/><br/><em style="font-size:11px;opacity:.6">⚠️ Orientación de primeros auxilios. Ante emergencias, llama a tu veterinario.</em></div></div>
         </div>
         <div class="chat-input-wrap">
-          <div class="chat-input-row">
-            <input class="chat-input" id="main-chat-input" type="text" placeholder="Ej: Mi vaca de 3 años lleva 6 horas sin comer, abdomen distendido del lado izquierdo..." onkeypress="if(event.key==='Enter')sendMainChat()" />
+          <!-- Preguntas rápidas frecuentes -->
+          <div style="padding:10px 16px 0;display:flex;flex-wrap:wrap;gap:6px">
+            <button class="quick-q" onclick="quickAsk('Mi vaca no come y tiene la panza inflada del lado izquierdo')">🐄 Timpanismo</button>
+            <button class="quick-q" onclick="quickAsk('Mi cerdo tiene diarrea y fiebre desde ayer')">🐷 Diarrea cerdo</button>
+            <button class="quick-q" onclick="quickAsk('Mi caballo lleva 2 horas con dolor de panza y revolcándose')">🐴 Cólico equino</button>
+            <button class="quick-q" onclick="quickAsk('¿Cuánto alimento le doy a mis becerros de 200 kilos por día?')">🌾 Ración diaria</button>
+            <button class="quick-q" onclick="quickAsk('¿Cómo mezclo el rastrojo con melaza para mis vacas?')">🌽 Rastrojo+melaza</button>
+          </div>
+          <div class="chat-input-row" style="margin-top:10px">
+            <input class="chat-input" id="main-chat-input" type="text" placeholder="Escribe tu duda: ¿qué le pasa a tu animal? ¿cuánto alimento necesita?..." onkeypress="if(event.key==='Enter')sendMainChat()" />
             <button class="chat-send" id="main-chat-send" onclick="sendMainChat()">➤</button>
           </div>
         </div>
@@ -852,7 +873,7 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
     <p style="font-size:9px;color:rgba(197,160,89,.5);line-height:1.5">⚠️ Orientación preliminar. Consulte siempre a su veterinario.</p>
   </div>
   <div class="float-chat-msgs" id="float-msgs">
-    <div class="float-msg model" id="float-welcome">🐾 Hola, soy VetMaster IA. Describe los síntomas de tu animal y te doy una evaluación de urgencia. Si aún no tienes clave API, ve al chat principal y haz clic en ⚙ Activar IA.</div>
+    <div class="float-msg model" id="float-welcome">🐾 ¡Qué onda! Soy VetMaster IA. Dime qué le está pasando a tu animal y te digo si es urgente o no. ¡Funciona aunque no tengas internet! 🌾</div>
   </div>
   <div class="float-input-wrap">
     <input class="float-input" id="float-input" type="text" placeholder="Especie + síntomas de tu animal..." onkeypress="if(event.key==='Enter')sendFloat()" />
@@ -1461,10 +1482,95 @@ function setSpecies(s) {
   document.getElementById('main-chat-input').focus();
 }
 
+// =================== SISTEMA EXPERTO OFFLINE ===================
+// Responde a las preguntas más comunes aunque no haya clave API
+const EXPERT_RULES = [
+  // TIMPANISMO / BLOAT BOVINO
+  { kw:['timpanismo','panza inflada','panza dura','hinchada','flatulencia','empaste','meteorismo','abombada'],
+    sp:['vaca','bovino','becerro','novillo','toro','res','ganado'],
+    res:`🔴 **¡DE EMERGENCIA! — TIMPANISMO BOVINO**\n\n⚠️ Orientación preliminar. Llama a tu veterinario DE INMEDIATO.\n\n**¿Qué está pasando?**\nTu animal tiene gas acumulado en el rumen (panza). El lado izquierdo se infla como tambor. Si no se atiende en 1-2 horas puede morir por asfixia.\n\n**Haz esto AHORITA:**\n1. 🚶 Mueve al animal — camínalo despacio, no lo dejes echado\n2. Colócalo con la cabeza cuesta ARRIBA en una pendiente si puedes\n3. Dale 200-300 ml de aceite vegetal (girasol o palma) directo a la boca para romper la espuma\n4. Masajea el lado izquierdo con el puño en círculos\n5. Si en 30 minutos no mejora → trocar de emergencia o llamar al veterinario\n\n**Señales de que empeora (ve al veterinario ya):**\n- Boca abierta jadeando\n- Lengua azulada\n- Se cae o no puede pararse\n\n**Prevención:** No meter al ganado en praderas de leguminosas (alfalfa, trébol) con rocío o en ayunas.` },
+
+  // CÓLICO EQUINO
+  { kw:['cólico','colico','dolor panza','revolcándose','revolcandose','patalea','se muerde','mira el flanco','no quiere caminar'],
+    sp:['caballo','yegua','potro','mula','equino','burro'],
+    res:`🔴 **¡DE EMERGENCIA! — CÓLICO EQUINO**\n\n⚠️ El cólico es la principal causa de muerte en caballos. Actúa rápido.\n\n**Señales de gravedad ALTA (veterinario ya):**\n- Más de 2 horas de dolor\n- Frecuencia cardíaca >60 latidos/min\n- Se tira al suelo y se revolca fuerte\n- Membranas mucosas rojas o azules\n- No hace gases ni materia fecal\n\n**Haz esto AHORITA:**\n1. 🚶 **Camínalo suavemente** 10-15 min para estimular el intestino (si el dolor es leve)\n2. ❌ **NO le des alimento ni agua** hasta que mejore\n3. ❌ **NO le des medicamentos** sin orden veterinaria\n4. Toma el pulso (arteria submandibular): normal = 28-44 lat/min\n5. Revisa si hace caca y qué tan frecuente\n6. 📞 **Llama al veterinario ahora mismo**\n\n**Tipos más comunes:**\n- Espasmos intestinales (leve, resuelve solo)\n- Impactación (estreñimiento — necesita tratamiento)\n- Torsión intestinal (emergencia quirúrgica)` },
+
+  // DIARREA CERDO/PORCINO
+  { kw:['diarrea','cagadera','evacuaciones','heces líquidas','caca blanda'],
+    sp:['cerdo','puerco','marrana','lechón','cochinillo','porcino','cochino'],
+    res:`🟡 **MODERADO a URGENTE — DIARREA EN PORCINOS**\n\n⚠️ Orientación preliminar.\n\n**¿Qué tan grave es?**\n- 🔴 **Urgente** si: lechones menores de 2 semanas con diarrea amarilla o blanca + temperatura baja\n- 🟡 **Moderado** si: cerdos de engorda, diarrea desde ayer, comen aunque sea poco\n\n**Causas más frecuentes por etapa:**\n- **Lechones 0-7 días:** E. coli (diarrea amarilla), Clostridium (café oscuro, muy grave)\n- **Destete (7-30 días):** E. coli post-destete, cambio de alimento\n- **Engorda:** Lawsonia (ileítis), Salmonella, Brachyspira\n\n**Haz esto:**\n1. 💧 Asegura que tomen agua limpia — la deshidratación mata rápido\n2. Aísla a los animales afectados\n3. Limpia y desinfecta el área (eliminar fuente del patógeno)\n4. Si son lechones pequeños: suero oral casero (1 L agua, 9g sal, 50g azúcar) cada 2-3 horas\n5. Temperatura del área: lechones necesitan 30-32°C\n6. 📞 Consulta al veterinario para antibiótico apropiado — NO uses antibióticos a ciegas` },
+
+  // MASTITIS VACA
+  { kw:['mastitis','ubre','cuarto','leche grumosa','leche con sangre','ubre caliente','ubre dura','coágulos'],
+    sp:['vaca','bovino','lechera'],
+    res:`🟡 **MODERADO — MASTITIS BOVINA**\n\n**¿Qué cuarto está afectado?**\nRevisa los 4 cuartos con la prueba de CMT o los primeros chorros en un tarro de fondo oscuro.\n\n**Tipos:**\n- **Clínica** (ves cambios en la leche o en la ubre) → trata ahora\n- **Subclínica** (leche normal pero CMT positivo) → monitorea y trata\n\n**Causas más comunes:**\n- Staphylococcus aureus, Streptococcus agalactiae (contagiosas)\n- E. coli, Klebsiella (ambientales, más graves)\n\n**Haz esto:**\n1. Ordeña el cuarto afectado cada 4-6 horas para sacar el inóculo\n2. Aplica paño caliente en la ubre 3 min antes del ordeño\n3. NO tires la leche al corral — contaminás todo\n4. 📞 Consulta al veterinario: necesitarás antibiótico intramamario (oxitocina + penicilina-neomicina o cloxacilina)\n5. Anota los días de retiro del antibiótico antes de vender leche\n\n**Prevención:** 5 pasos del ordeño, sellado post-ordeño, terapia al secado en todas las vacas.` },
+
+  // FIEBRE AFTOSA / VESÍCULAS
+  { kw:['ampollas','vesículas','cojea','baba','no puede comer','lengua','patas','aftosa'],
+    sp:['vaca','becerro','novillo','cerdo','puerco','oveja','cabra','bovino'],
+    res:`🔴 **¡URGENTE! — POSIBLE ENFERMEDAD VESICULAR**\n\n⚠️ Si ves ampollas en boca, lengua, patas o ubre → puede ser Fiebre Aftosa u otra enfermedad vesicular de NOTIFICACIÓN OBLIGATORIA.\n\n**Haz esto INMEDIATAMENTE:**\n1. 🚫 **Aísla a los animales** — no muevas el ganado\n2. 📞 **Llama a SENASICA / SAGARPA / MVZ oficial** — es obligatorio por ley reportar sospechas de Fiebre Aftosa\n3. No hagas visitas ni dejes entrar personas a la propiedad\n4. No vendas ni muevas animales de la unidad hasta evaluación oficial\n\n**México:** SENASICA: 800-751-8700 o senasica.gob.mx\n\n⚠️ La Fiebre Aftosa no existe en México desde 1954. Si sospechas, el reporte es urgente y obligatorio.` },
+
+  // NEWCASTLE GALLINAS
+  { kw:['gallinas','pollos','muriendo','torticolis','temblores','no pueden','paralisis','patas','diarrea verde'],
+    sp:['gallina','pollo','ave','polla','gallo','aves','parvada'],
+    res:`🔴 **URGENTE — POSIBLE ENFERMEDAD EN AVES**\n\n**Señales de alarma en parvadas:**\n- Mortalidad súbita o en aumento rápido\n- Tortícolis (cuello torcido), temblores, parálisis\n- Diarrea verde o café agua\n- Cese brusco de postura\n- Estornudos y secreción nasal\n\n**Enfermedades más probables:**\n- **Newcastle:** Tortícolis, temblores, muerte rápida — ¡reportar al MVZ oficial!\n- **Influenza Aviar:** Mortalidad masiva, hemorragias — ¡reportar URGENTE a SENASICA!\n- **Bronquitis Infecciosa:** Tos, secreción, baja de postura\n- **Gumboro:** Depresión, parvadas jóvenes, mortalidad moderada\n\n**Haz esto:**\n1. Aísla la parvada afectada\n2. Guarda 5-10 aves muertas recientes en bolsa de plástico en frío (no congeladas) para diagnóstico\n3. 📞 Llama a tu veterinario o SENASICA si sospechas Newcastle o Influenza Aviar` },
+
+  // RACIÓN / NUTRICIÓN BOVINO
+  { kw:['ración','cuánto le doy','alimento','kilos de comida','cuánto come','cuánto alimentar','qué comer','dieta','engorda'],
+    sp:['vaca','becerro','novillo','toro','res','ganado','bovino'],
+    res:`🌾 **NUTRICIÓN BOVINA — CÁLCULO DE RACIÓN**\n\nPara calcular la ración de tus bovinos necesito saber el peso, pero aquí va la regla general:\n\n**Regla de oro:** Un bovino consume **2 a 2.5% de su peso vivo** en materia seca al día.\n\n| Peso del animal | MS/día | Alimento tal cual* |\n|---|---|---|\n| 150 kg | 3.0 – 3.8 kg | 3.4 – 4.3 kg |\n| 200 kg | 4.0 – 5.0 kg | 4.5 – 5.7 kg |\n| 250 kg | 5.0 – 6.3 kg | 5.7 – 7.2 kg |\n| 300 kg | 6.0 – 7.5 kg | 6.8 – 8.5 kg |\n| 400 kg | 8.0 – 10.0 kg | 9.1 – 11.4 kg |\n*Ajustado a 88% de materia seca\n\n**Ración económica con rastrojo + melaza (por animal 250 kg, desarrollo):**\n- Rastrojo de maíz: 2.0 kg\n- Maíz molido: 1.5 kg\n- Melaza: 0.6 kg\n- Pasta de soya: 0.8 kg\n- Premezcla mineral: 0.1 kg\n**Total: ~5 kg MS/día | PC 14% | FCA esperada: 6-7**\n\n¿Quieres que calcule para tu número exacto de animales y peso? Dime cuántos kilos pesan.` },
+
+  // RASTROJO CON MELAZA
+  { kw:['rastrojo','melaza','caña','paja','forraje','bagazo'],
+    sp:['vaca','becerro','novillo','bovino','res','ganado','caballo','yegua'],
+    res:`🌽 **CÓMO USAR RASTROJO DE MAÍZ + MELAZA**\n\nEs la combinación más económica del campo mexicano. Así se hace bien:\n\n**Proporciones recomendadas:**\n| Mezcla | PC% | EM | Digestibilidad |\n|---|---|---|---|\n| 90% rastrojo + 10% melaza | 5.5% | 1.70 Mcal/kg | 48% |\n| 80% rastrojo + 20% melaza | 5.6% | 1.85 Mcal/kg | 54% |\n| 70% rastrojo + 20% melaza + 10% sorgo | 6.8% | 2.10 Mcal/kg | 60% |\n\n**Cómo aplicar la melaza:**\n1. Diluye la melaza con agua caliente (1:1) para que fluya mejor\n2. Rocíala sobre el rastrojo picado y revuelve bien\n3. Deja reposar 30 minutos antes de darla\n\n**Si agregas urea (NNP):**\n- Máximo 1% del total de la ración\n- Equivale a ~28 g/kg de materia seca\n- SIEMPRE mezcla la urea con la melaza ANTES de agregar al rastrojo\n- ⚠️ Nunca dés urea sola ni a animales sin agua disponible → intoxicación grave\n- El período de adaptación a la urea es de 3-4 semanas gradualmente\n\n**Esta ración es para mantenimiento/pastoreo.** Para engorda necesitas agregar energía (maíz/sorgo) y proteína (pasta de soya).` },
+
+  // RACIÓN PORCINOS
+  { kw:['ración','cuánto le doy','alimento','cuánto come','dieta','cuánto sorgo','cuánto maíz'],
+    sp:['cerdo','puerco','marrana','lechón','cochinillo','porcino','cochino'],
+    res:`🐷 **NUTRICIÓN PORCINA — RACIONES POR ETAPA**\n\n**Consumo diario estimado:**\n| Etapa | Peso | Consumo/día | Proteína |\n|---|---|---|---|\n| Inicio | 12-30 kg | 0.7 – 1.2 kg | 20-22% |\n| Crecimiento | 30-60 kg | 1.5 – 2.2 kg | 18% |\n| Finalización | 60-110 kg | 2.2 – 3.0 kg | 15-16% |\n| Gestante | 130-180 kg | 2.0 – 2.5 kg | 13-14% |\n| Lactante | — | 5.0 – 7.5 kg | 16-17% |\n\n**Ración básica de CRECIMIENTO (sorgo-soya):**\n- Sorgo grano: 55%\n- Pasta de soya 44%: 28%\n- Aceite vegetal: 3%\n- Salvado de trigo: 7%\n- Lisina sintética: 0.3%\n- Premezcla mineral-vit: 3.7% → sin lisina pierdes hasta 15% de ganancia\n- Agua ad libitum: 2-3 litros por kg de alimento\n\n**FCA esperada:** 2.0-2.5 kg alimento / kg de ganancia en crecimiento.` },
+
+  // SALUD GENERAL / VACUNAS
+  { kw:['vacuna','vacunar','vacunación','desparasitar','desparasitación','calendario','vermífugo','ivermectina'],
+    sp:[],
+    res:`💉 **CALENDARIO BÁSICO DE VACUNACIÓN Y DESPARASITACIÓN**\n\n**BOVINOS:**\n- Brucelosis (hembras 3-8 meses): 1 sola dosis, vacuna RB51\n- Carbón sintomático + Septicemia hemorrágica: cada 6 meses\n- IBR + DVB + Leptospira: anual o semestral (ganado lechero)\n- Desparasitación: ivermectina 1% cada 3-4 meses, rotación de productos\n\n**PORCINOS:**\n- Parvo + Leptospira (cerdas): antes del servicio y en gestación\n- Mycoplasma (lechones): 1-3 semanas de edad\n- PCV2 (circovirus): 3 semanas\n- Desparasitación: fenbendazole antes del parto, ivermectina según programa\n\n**ÉQUIDOS:**\n- Tétanos: anual (muy importante)\n- Influenza equina: cada 6 meses\n- Rinoneumonitis (yeguas gestantes): 5, 7 y 9 meses de gestación\n- Desparasitación: ivermectina cada 2-3 meses, rotando con moxidectina\n\n**CANINOS:**\n- Polivalente (DHPP): cachorro a las 6-8, 10-12 y 16 semanas; luego anual\n- Rabia: anual (obligatoria)\n- Desparasitación: cada 3 meses adultos, mensual cachorros\n\nPide a tu veterinario el esquema específico para tu región.` },
+
+  // GENÉRICO / AYUDA
+  { kw:['ayuda','hola','qué puedes','para qué','cómo funciona'],
+    sp:[],
+    res:`👋 ¡Hola! Soy **VetMaster IA**, tu asesor agropecuario gratuito.\n\nPuedo ayudarte con:\n\n🐄 **Ganado bovino** — cólico, timpanismo, mastitis, reproducción, nutrición\n🐷 **Porcinos** — diarrea, enfermedades respiratorias, manejo del parto, raciones\n🐴 **Caballos** — cólico, cojeras, nutrición, reproducción\n🐕 **Perros** — comportamiento, vacunas, enfermedades comunes\n🦜 **Aves de corral** — Newcastle, Influenza Aviar, producción de huevo\n🐟 **Acuicultura** — tilapia, camarón, calidad del agua\n🌾 **Nutrición y raciones** — cuánto comen, qué mezclar, conversión de alimento\n\n**¿Cómo me preguntas?**\n"Mi vaca de 3 años lleva 8 horas sin comer y tiene la panza inflada del lado izquierdo"\n"¿Cuánto maíz le doy a 20 cerdos de 60 kilos?"\n\n¡Cuéntame qué está pasando con tus animales!` }
+];
+
+function expertOfflineResponse(msg) {
+  const lower = msg.toLowerCase();
+  // Busca regla que coincida con keywords y species
+  for (const rule of EXPERT_RULES) {
+    const hasKw = rule.kw.some(k => lower.includes(k));
+    const hasSp = rule.sp.length === 0 || rule.sp.some(s => lower.includes(s));
+    if (hasKw && hasSp) {
+      return rule.res + '\n\n---\n_💡 Respuesta del sistema experto offline. Con clave API de Gemini (gratis en aistudio.google.com/apikey) obtienes respuestas personalizadas más detalladas._';
+    }
+  }
+  // Si solo hay species pero no keywords claras
+  const speciesMap = {vaca:'bovinos',becerro:'bovinos',novillo:'bovinos',res:'bovinos',ganado:'bovinos',cerdo:'porcinos',puerco:'porcinos',lechón:'porcinos',caballo:'équidos',yegua:'équidos',potro:'équidos',perro:'caninos',gato:'felinos',gallina:'aves',pollos:'aves',parvada:'aves',tilapia:'acuicultura',camarón:'acuicultura'};
+  for (const [sp, cat] of Object.entries(speciesMap)) {
+    if (lower.includes(sp)) {
+      return `🐾 Veo que tu pregunta es sobre **${cat}**. Para darte la mejor orientación, cuéntame más:\n\n• **¿Qué síntomas presenta?** (no come, diarrea, fiebre, cojera, etc.)\n• **¿Cuántos animales están afectados?**\n• **¿Desde cuándo empezó?**\n• **¿Peso y edad aproximados?**\n\nCon esos datos puedo orientarte mejor. También puedes usar los botones de preguntas rápidas arriba del chat.\n\n_💡 Sistema experto offline activo. Con clave API de Gemini obtienes respuestas aún más detalladas._`;
+    }
+  }
+  return `🤔 No entendí bien tu pregunta. Intenta ser más específico:\n\n**Ejemplos que puedo responder:**\n- "Mi vaca lleva 6 horas sin comer, panza inflada del lado izquierdo"\n- "¿Cuánto alimento le doy a mis cerdos de 80 kilos?"\n- "Mis gallinas están muriendo y tienen el cuello torcido"\n- "¿Cómo mezclo rastrojo con melaza?"\n\n¡Cuéntame qué te preocupa de tus animales!\n\n_💡 Con clave API de Gemini (gratis en aistudio.google.com) la IA entiende cualquier pregunta en lenguaje natural._`;
+}
+
+function quickAsk(text) {
+  document.getElementById('main-chat-input').value = text;
+  sendMainChat();
+}
+
 async function callGemini(message, history) {
   const apiKey = getApiKey();
   if (!apiKey) {
-    return '🔑 **Para activar VetMaster IA:** Haz clic en **"⚙ Activar IA"** en la esquina superior derecha del chat y pega tu clave gratuita de Gemini.\n\n👉 Obtén tu clave gratis en: **aistudio.google.com/apikey** (sin tarjeta de crédito — hasta 1,500 consultas diarias gratis).\n\nUna vez configurada, podrás hacer consultas de triage, nutrición animal y raciones balanceadas directamente aquí.';
+    // Usar sistema experto offline
+    return expertOfflineResponse(message);
   }
   const contents = [
     ...history.map(h => ({role:h.role,parts:h.parts})),
@@ -1559,7 +1665,7 @@ async function sendFloat() {
     appendFloatMsg('model', reply);
     floatChatHistory.push({role:'model',parts:[{text:reply}]});
   } catch(e) {
-    appendFloatMsg('model', 'Disculpe, ha habido un error. Por favor, reintente.');
+    appendFloatMsg('model', '⚠️ Algo salió mal. Vuelve a intentarlo en un momento.');
   }
 }
 
