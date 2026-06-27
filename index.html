@@ -380,9 +380,56 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
 /* Quick question chips */
 .quick-q{padding:5px 12px;font-size:10px;font-weight:600;border:1px solid rgba(197,160,89,.15);color:rgba(163,163,163,.6);background:transparent;cursor:pointer;transition:all .2s;border-radius:2px}
 .quick-q:hover{border-color:var(--gold);color:var(--gold);background:rgba(197,160,89,.06)}
+
+/* =================== SCROLL PROGRESS =================== */
+#scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),rgba(197,160,89,.5));z-index:999;width:0%;transition:width .08s linear;pointer-events:none}
+
+/* =================== MOBILE NAV =================== */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;z-index:101}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--muted);transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);background:var(--gold)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);background:var(--gold)}
+.mobile-nav-overlay{position:fixed;inset:0;background:rgba(5,5,5,.98);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;transform:translateY(-105%);transition:transform .45s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(20px)}
+.mobile-nav-overlay.open{transform:translateY(0)}
+.mobile-nav-overlay a{font-size:clamp(24px,6vw,38px);font-family:'Cormorant Garamond',serif;font-weight:300;letter-spacing:.08em;color:rgba(163,163,163,.7);transition:color .2s;text-transform:uppercase}
+.mobile-nav-overlay a:hover{color:var(--gold)}
+@media(max-width:768px){.hamburger{display:flex}}
+
+/* =================== TRUST BAR =================== */
+.trust-bar{background:rgba(10,10,10,.95);border-top:1px solid rgba(197,160,89,.07);border-bottom:1px solid rgba(197,160,89,.07);padding:20px 40px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0;overflow:hidden}
+.trust-item{display:flex;align-items:center;gap:10px;padding:12px 28px;color:rgba(163,163,163,.45);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.3em;white-space:nowrap;border-right:1px solid rgba(197,160,89,.07);transition:color .3s}
+.trust-item:last-child{border-right:none}
+.trust-item:hover{color:rgba(197,160,89,.7)}
+.trust-icon{font-size:14px;opacity:.6}
+
+/* =================== HOW IT WORKS =================== */
+#how-it-works{padding:96px 0 0;border-top:1px solid rgba(197,160,89,.05)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(197,160,89,.07);margin-top:56px}
+.how-step{padding:48px 40px;background:var(--dark);position:relative;overflow:hidden;transition:background .3s}
+.how-step:hover{background:rgba(15,15,15,.8)}
+.how-num{font-size:72px;font-weight:300;color:rgba(197,160,89,.07);font-family:'Cormorant Garamond',serif;line-height:1;margin-bottom:20px;letter-spacing:-.02em;transition:color .3s}
+.how-step:hover .how-num{color:rgba(197,160,89,.15)}
+.how-icon{font-size:26px;margin-bottom:16px}
+.how-title{font-size:20px;font-family:'Cormorant Garamond',serif;margin-bottom:12px;color:var(--text)}
+.how-desc{font-size:13px;color:var(--muted);line-height:1.8}
+@media(max-width:768px){.how-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav-overlay" id="mobile-nav">
+  <a href="#academy" onclick="closeMobileNav()">Academia</a>
+  <a href="#mentors" onclick="closeMobileNav()">Mentores</a>
+  <a href="#nutricion" onclick="closeMobileNav()">Nutrición</a>
+  <a href="#ai-assistance" onclick="closeMobileNav()">VetMaster IA</a>
+  <a href="#quizzes" onclick="closeMobileNav()">Certificaciones</a>
+  <a href="#ai-assistance" onclick="closeMobileNav()" class="btn-luxury" style="font-size:10px;margin-top:8px">Consultar IA →</a>
+</div>
 
 <!-- =================== NAVBAR =================== -->
 <nav id="navbar">
@@ -396,8 +443,9 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
     <a href="#nutricion">Nutrición</a>
     <a href="#ai-assistance">VetMaster IA</a>
     <a href="#quizzes">Certificaciones</a>
-    <button class="btn-luxury" style="padding:10px 24px" onclick="alert('Registro gratuito próximamente. ¡Únete a la lista de espera!')">Unirse Gratis</button>
+    <button class="btn-luxury" style="padding:10px 24px" onclick="document.getElementById('ai-assistance').scrollIntoView({behavior:'smooth'})">Consultar IA →</button>
   </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menú"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- =================== HERO =================== -->
@@ -414,14 +462,14 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
         <a href="#ai-assistance" class="btn-luxury">Consultar VetMaster IA →</a>
         <a href="#academy" class="btn-outline">Ver Guías Técnicas</a>
       </div>
-      <div style="margin-top:48px;display:flex;gap:40px;flex-wrap:wrap">
-        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">18+</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Mentores Expertos</span></div>
-        <div style="width:1px;background:rgba(197,160,89,.15)"></div>
-        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">6</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Especies Atendidas</span></div>
-        <div style="width:1px;background:rgba(197,160,89,.15)"></div>
-        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">IA</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Triage 24/7</span></div>
-        <div style="width:1px;background:rgba(197,160,89,.15)"></div>
-        <div><span style="font-size:28px;font-weight:300;color:var(--gold)">$0</span><br/><span style="font-size:10px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Costo para el productor</span></div>
+      <div style="margin-top:48px;display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start">
+        <div><span style="font-size:32px;font-weight:300;color:var(--gold);font-family:'Cormorant Garamond',serif"><span data-count="18" data-suffix="+">18+</span></span><br/><span style="font-size:9px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Mentores Expertos</span></div>
+        <div style="width:1px;background:rgba(197,160,89,.15);height:40px;margin-top:6px"></div>
+        <div><span style="font-size:32px;font-weight:300;color:var(--gold);font-family:'Cormorant Garamond',serif"><span data-count="7" data-suffix="">7</span></span><br/><span style="font-size:9px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Especies Atendidas</span></div>
+        <div style="width:1px;background:rgba(197,160,89,.15);height:40px;margin-top:6px"></div>
+        <div><span style="font-size:32px;font-weight:300;color:var(--gold);font-family:'Cormorant Garamond',serif">24/7</span><br/><span style="font-size:9px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Triage IA Activo</span></div>
+        <div style="width:1px;background:rgba(197,160,89,.15);height:40px;margin-top:6px"></div>
+        <div><span style="font-size:32px;font-weight:300;color:var(--gold);font-family:'Cormorant Garamond',serif">$0</span><br/><span style="font-size:9px;text-transform:uppercase;letter-spacing:.3em;color:var(--muted)">Costo para el productor</span></div>
       </div>
       <!-- Badges institucionales -->
       <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:12px">
@@ -433,6 +481,46 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
     </div>
     <div class="hero-img-wrap">
       <img src="https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?q=80&w=2071&auto=format&fit=crop" alt="Luxury Animal Care" referrerpolicy="no-referrer" />
+    </div>
+  </div>
+</section>
+
+<!-- =================== TRUST BAR =================== -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🏛</span>Uso Gubernamental</div>
+  <div class="trust-item"><span class="trust-icon">🌾</span>SENASICA Compatible</div>
+  <div class="trust-item"><span class="trust-icon">⚕</span>Médicos Veterinarios</div>
+  <div class="trust-item"><span class="trust-icon">🎓</span>Escuelas Agronómicas</div>
+  <div class="trust-item"><span class="trust-icon">💡</span>100% Gratuito</div>
+  <div class="trust-item"><span class="trust-icon">🤖</span>IA Veterinaria 24/7</div>
+</div>
+
+<!-- =================== HOW IT WORKS =================== -->
+<section id="how-it-works">
+  <div class="section-inner">
+    <div style="text-align:center">
+      <span class="sec-label" style="display:block;text-align:center">Simple · Rápido · Sin Registro</span>
+      <h2 style="font-size:clamp(34px,4vw,56px)">Cómo Funciona</h2>
+    </div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-icon">🐄</div>
+        <div class="how-title">Describe el problema</div>
+        <div class="how-desc">Escribe en lenguaje natural qué le pasa a tu animal — sin tecnicismos. "Mi vaca lleva 8 horas sin comer y tiene la panza inflada" es suficiente.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <div class="how-icon">🤖</div>
+        <div class="how-title">VetMaster IA analiza</div>
+        <div class="how-desc">El sistema clasifica la urgencia en segundos: 🔴 emergencia, 🟡 atención en 24-48h, o 🟢 manejable en casa. Con o sin internet.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-icon">📋</div>
+        <div class="how-title">Actúas con certeza</div>
+        <div class="how-desc">Recibes primeros auxilios, qué signos vigilar, cuándo llamar al veterinario y, si aplica, cálculos de ración o calendario de vacunación.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -756,14 +844,15 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
           <p style="font-size:12px;color:rgba(34,197,94,.7);line-height:1.7">✅ <strong style="color:#22c55e">Funciona sin internet con modo experto</strong> — Responde aunque no tengas clave API. Con clave de Gemini (gratis) la respuesta es aún más detallada.</p>
         </div>
       </div>
-        </div>
-        <div style="margin-top:32px;padding:20px 24px;background:rgba(197,160,89,.05);border:1px solid rgba(197,160,89,.15);border-left:3px solid var(--gold)">
-          <p style="font-size:12px;color:var(--muted);line-height:1.7"><strong style="color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.2em">Aviso Legal</strong><br/>Este asistente proporciona orientación preliminar de triage. No sustituye el diagnóstico ni la prescripción de un médico veterinario certificado. Para prescripción de medicamentos, consulte siempre a su veterinario.</p>
-        </div>
-      </div>
       <div class="chat-panel" style="height:760px">
         <div class="chat-header">
-          <div class="chat-status"><div class="pulse-dot" id="chat-pulse"></div><span id="chat-status-text">VetMaster IA · Triage Activo</span></div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="width:44px;height:44px;background:rgba(197,160,89,.1);border:1px solid rgba(197,160,89,.3);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">🐾</div>
+            <div>
+              <div class="chat-status"><div class="pulse-dot" id="chat-pulse"></div><span id="chat-status-text" style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;text-transform:none;letter-spacing:.02em">VetMaster IA</span></div>
+              <div style="font-size:9px;color:rgba(163,163,163,.4);text-transform:uppercase;letter-spacing:.25em;margin-top:2px">Triage Veterinario · Modo Experto Activo</div>
+            </div>
+          </div>
           <button onclick="toggleApiPanel()" id="api-config-btn" style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:rgba(197,160,89,.5);border:1px solid rgba(197,160,89,.2);padding:6px 14px;cursor:pointer;transition:all .2s;background:transparent" title="Configurar clave API gratuita">⚙ API Key</button>
         </div>
         <!-- Panel configuración API key -->
@@ -849,7 +938,7 @@ footer{padding:96px 0;border-top:1px solid rgba(197,160,89,.1)}
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Animal Master — Plataforma Pública Agropecuaria. Acceso libre para todos.</p>
+      <p class="footer-copy">© 2026 Animal Master — Plataforma Pública Agropecuaria. Acceso libre para todos.</p>
       <div class="footer-legal">
         <a href="#">Privacidad</a>
         <a href="#">Términos</a>
@@ -1970,6 +2059,70 @@ updateChatStatus();
 // Cargar clave guardada en el input al arrancar
 const _savedKey = localStorage.getItem('vetmaster_api_key');
 if (_savedKey) { const _inp = document.getElementById('api-key-input'); if(_inp) _inp.value = _savedKey; }
+
+// =================== SCROLL PROGRESS ===================
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('scroll-progress');
+  if (el) {
+    const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    el.style.width = Math.min(pct, 100) + '%';
+  }
+}, { passive: true });
+
+// =================== MOBILE NAV ===================
+function toggleMobileNav() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobile-nav').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobile-nav').classList.contains('open') ? 'hidden' : '';
+}
+function closeMobileNav() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobile-nav').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// =================== COUNTER ANIMATION ===================
+function animateCounter(el, target, suffix, duration) {
+  const start = Date.now();
+  const update = () => {
+    const progress = Math.min((Date.now() - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+const countEls = document.querySelectorAll('[data-count]');
+if (countEls.length) {
+  const cObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.counted) {
+        e.target.dataset.counted = '1';
+        animateCounter(e.target, parseInt(e.target.dataset.count), e.target.dataset.suffix || '', 1600);
+      }
+    });
+  }, { threshold: 0.6 });
+  countEls.forEach(el => cObs.observe(el));
+}
+
+// =================== SCROLL REVEAL ===================
+const revealEls = document.querySelectorAll('.how-step, .eco-card, .guide-card');
+if (revealEls.length) {
+  const rObs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }, i * 60);
+        rObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease';
+    rObs.observe(el);
+  });
+}
 </script>
 </body>
 </html>
