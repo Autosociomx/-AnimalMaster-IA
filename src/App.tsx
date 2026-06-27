@@ -2597,6 +2597,7 @@ const MasterEngineSection = () => {
   const { user, userProfile, signInWithGoogle } = useAuth();
   const [input, setInput] = useState('');
   const [urlInput, setUrlInput] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isCapturing, setIsCapturing] = useState(false);
@@ -2937,9 +2938,9 @@ const MasterEngineSection = () => {
                   className="w-full h-32 bg-brand-dark/50 border border-brand-gold/10 rounded-lg p-4 text-brand-muted font-light focus:border-brand-gold/30 transition-all outline-none resize-none"
                 />
                 <div className="flex items-center gap-4">
-                  <label className="flex-grow flex items-center justify-center gap-2 py-4 border border-dashed border-brand-gold/20 rounded-lg cursor-pointer hover:bg-brand-gold/5 transition-all">
-                    <Camera className="w-5 h-5 text-brand-gold" />
-                    <span className="text-sm text-brand-muted font-light">Subir Captura (Facebook/WA)</span>
+                  <label className="flex-grow flex items-center justify-center gap-2 py-5 px-6 border border-dashed border-brand-gold/20 rounded-lg cursor-pointer hover:bg-brand-gold/5 transition-all min-h-[56px]">
+                    <Camera className="w-6 h-6 text-brand-gold" />
+                    <span className="text-base text-brand-muted font-light">Subir Captura</span>
                     <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
                   </label>
                   {image && (
@@ -2954,10 +2955,10 @@ const MasterEngineSection = () => {
                 <button 
                   onClick={() => handleProcess()}
                   disabled={isLoading}
-                  className="luxury-button w-full group"
+                  className="luxury-button w-full group min-h-[56px] text-base"
                 >
                   {isLoading ? 'Procesando con IA...' : 'Ejecutar Master Engine'}
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform" />
                 </button>
               </div>
             </div>
@@ -2969,9 +2970,9 @@ const MasterEngineSection = () => {
                 { label: "Dataset Estructurado", icon: <Table className="w-4 h-4" /> },
                 { label: "ROI Proyectado", icon: <TrendingUp className="w-4 h-4" /> }
               ].map((item, i) => (
-                <div key={i} className="p-4 border border-brand-gold/10 bg-brand-dark/30 flex items-center gap-3">
+                <div key={i} className="p-5 border border-brand-gold/10 bg-brand-dark/30 flex items-center gap-4">
                   <div className="text-brand-gold">{item.icon}</div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-brand-muted">{item.label}</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-brand-muted">{item.label}</span>
                 </div>
               ))}
             </div>
@@ -3049,25 +3050,34 @@ const MasterEngineSection = () => {
                 </div>
 
                 <div className="p-6 border border-brand-gold/10 bg-brand-dark/50 rounded-lg">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <Table className="w-4 h-4 text-brand-gold" />
-                      <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-muted">Historial de Inteligencia (Dataset)</span>
+                  <div className="flex flex-col gap-2 mb-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Table className="w-4 h-4 text-brand-gold" />
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-muted">Historial de Inteligencia (Dataset)</span>
+                      </div>
+                      <div className="flex gap-2">
+                        {['All', 'Animal Master', 'AutoSocio'].map(n => (
+                          <button 
+                            key={n}
+                            onClick={() => setSelectedNiche(n as any)}
+                            className={cn(
+                              "text-[8px] px-2 py-1 rounded border transition-all",
+                              selectedNiche === n ? "bg-brand-gold text-black border-brand-gold" : "border-brand-gold/10 text-brand-muted"
+                            )}
+                          >
+                            {n}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      {['All', 'Animal Master', 'AutoSocio'].map(n => (
-                        <button 
-                          key={n}
-                          onClick={() => setSelectedNiche(n as any)}
-                          className={cn(
-                            "text-[8px] px-2 py-1 rounded border transition-all",
-                            selectedNiche === n ? "bg-brand-gold text-black border-brand-gold" : "border-brand-gold/10 text-brand-muted"
-                          )}
-                        >
-                          {n}
-                        </button>
-                      ))}
-                    </div>
+                    <input 
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Filtrar por entidad..."
+                      className="w-full bg-brand-dark/30 border border-brand-gold/10 rounded px-3 py-2 text-[10px] text-brand-muted focus:border-brand-gold/30 outline-none"
+                    />
                   </div>
                   <div className="overflow-x-auto">
                     <table className="w-full text-[10px] font-mono text-brand-muted/60">
@@ -3082,7 +3092,10 @@ const MasterEngineSection = () => {
                       </thead>
                       <tbody>
                         {history
-                          .filter(h => selectedNiche === 'All' || h.niche === selectedNiche)
+                          .filter(h => 
+                             (selectedNiche === 'All' || h.niche === selectedNiche) &&
+                             (!searchQuery || h.entity?.toLowerCase().includes(searchQuery.toLowerCase()))
+                          )
                           .slice(0, 5)
                           .map((h, i) => (
                           <tr key={i} className="border-b border-brand-gold/5 hover:bg-brand-gold/5 transition-colors">
